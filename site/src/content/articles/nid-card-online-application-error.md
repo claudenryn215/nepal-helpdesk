@@ -1,6 +1,10 @@
 ---
 title: NID Online Application Error — How to Fix Common Failures (2026)
 description: National ID (NID) online application failing? Fix photo and signature upload errors, browser issues, payment errors and 'already registered' problems.
+publishedAt: '2026-08-06T14:26:09.208Z'
+lastVerified: '2026-08-06T14:26:09.208Z'
+confidence: kb
+niche: e-gov
 keywords:
 - nid online application error
 - nid registration problem
@@ -12,9 +16,6 @@ tags:
 - national-id
 - e-gov
 - application
-niche: e-gov
-sources:
-- https://www.nid.gov.np
 summary:
 - problem: Photo upload keeps failing
   cause: File too large or wrong format
@@ -25,11 +26,10 @@ summary:
 - problem: Page won't load / error 500
   cause: Server load or old browser
   fix: Use Chrome on a PC with stable internet, retry off-peak
-publishedAt: '2026-07-25T13:54:01.000Z'
-lastVerified: '2026-08-06T13:54:01.000Z'
-confidence: kb
-related: [nagarik-app-otp-not-received, passport-appointment-esewa-khalti-error]
-trendingScore: 60.0
+sources:
+- https://www.nid.gov.np
+related: []
+trendingScore: 50.0
 ---
 
 ## Quick Answers

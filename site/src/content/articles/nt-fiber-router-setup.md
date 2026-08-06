@@ -1,6 +1,10 @@
 ---
 title: NT Fiber (Nepal Telecom) Router Setup — Step-by-Step Guide (2026)
 description: 'Setup and fix Nepal Telecom NT Fiber: connect ONU, configure PPPoE username and password, enable WiFi, and fix IPTV not working issues.'
+publishedAt: '2026-08-06T14:26:09.208Z'
+lastVerified: '2026-08-06T14:26:09.208Z'
+confidence: kb
+niche: isp
 keywords:
 - nt fiber setup
 - nt fiber router configuration
@@ -14,10 +18,6 @@ tags:
 - fiber
 - pppoe
 - iptv
-niche: isp
-sources:
-- https://www.ntc.net.np/fiber
-- https://www.ntc.net.np
 summary:
 - problem: No internet after installation
   cause: PPPoE credentials not entered
@@ -28,11 +28,11 @@ summary:
 - problem: WiFi password forgotten
   cause: Default sticker credentials changed
   fix: Reset ONT and reconfigure, or check admin page
-publishedAt: '2026-08-05T13:54:01.000Z'
-lastVerified: '2026-08-06T13:54:01.000Z'
-confidence: kb
-related: [worldlink-router-no-internet, vianet-router-slow-wifi-fix]
-trendingScore: 60.0
+sources:
+- https://www.ntc.net.np/fiber
+- https://www.ntc.net.np
+related: []
+trendingScore: 50.0
 ---
 
 ## Quick Answers
