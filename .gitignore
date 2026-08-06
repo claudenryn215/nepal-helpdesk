@@ -31,3 +31,4 @@ pipeline/state/*.jsonl
 # Secrets
 .env
 .env.*
+.wrangler/
