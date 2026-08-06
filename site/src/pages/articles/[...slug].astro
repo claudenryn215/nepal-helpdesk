@@ -1,0 +1,116 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { categoryLabel, SITE } from '../../config';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map((article) => ({ params: { slug: article.id }, props: { article } }));
+}
+
+const { article } = Astro.props;
+const { data } = article;
+const { Content } = await render(article);
+
+const steps: { num: string; name: string }[] = [];
+const stepRe = /^##\s*Step\s*(\d+)[.:]\s*(.+)$/gm;
+let m: RegExpExecArray | null;
+while ((m = stepRe.exec(article.body)) !== null) {
+  steps.push({ num: m[1], name: m[2].trim() });
+}
+
+const faq: { q: string; a: string }[] = [];
+const faqRe = /\*\*Q:\*\*\s*(.+?)\s*\n\s*\*\*A:\*\*\s*(.+?)(?=\n\s*\*\*Q:\*\*|\n##|\n\s*$)/gs;
+while ((m = faqRe.exec(article.body)) !== null) {
+  faq.push({ q: m[1].trim(), a: m[2].trim().replace(/\s*\n+/g, ' ') });
+}
+
+const canonical = `${SITE.url}/articles/${article.slug}/`;
+const pubISO = data.publishedAt.toISOString();
+const jsonLd: object[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: data.title,
+    description: data.description,
+    datePublished: pubISO,
+    dateModified: (data.updatedAt ?? data.publishedAt).toISOString(),
+    mainEntityOfPage: canonical,
+    author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+    publisher: { '@type': 'Organization', name: SITE.name },
+  },
+];
+
+if (steps.length > 0) {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: data.title,
+    description: data.description,
+    step: steps.map((s) => ({
+      '@type': 'HowToStep',
+      position: Number(s.num),
+      name: s.name,
+    })),
+  });
+}
+
+if (faq.length > 0) {
+  jsonLd.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  });
+}
+---
+
+<BaseLayout
+  title={`${data.title} | ${SITE.shortName}`}
+  description={data.description}
+  canonical={canonical}
+  ogType="article"
+  jsonLd={jsonLd}
+>
+  <div class="container">
+    <div class="article-head">
+      <a class="kicker" href={`/category/${data.niche}/`}>{categoryLabel(data.niche)}</a>
+      <h1>{data.title}</h1>
+      <div class="meta">
+        <span>Updated {data.publishedAt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+        {data.lastVerified && <span class="verified">Last verified {data.lastVerified.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>}
+      </div>
+    </div>
+
+    {data.confidence === 'medium' && (
+      <div class="notice">Community-sourced guide — verify details with the official app or support line before taking irreversible actions.</div>
+    )}
+
+    <article class="prose">
+      <Content />
+    </article>
+
+    {data.sources.length > 0 && (
+      <>
+        <h2>Sources</h2>
+        <ul>
+          {data.sources.map((src) => (
+            <li><a href={src} rel="noopener" target="_blank">{src.replace(/^https?:\/\//, '')}</a></li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    {data.related.length > 0 && (
+      <>
+        <h2>Related guides</h2>
+        <ul>
+          {data.related.map((slug) => <li><a href={`/articles/${slug}/`}>{slug.replace(/-/g, ' ')}</a></li>)}
+        </ul>
+      </>
+    )}
+  </div>
+</BaseLayout>

@@ -1,0 +1,370 @@
+# e-Governance knowledge base — Nagarik App, NID, passport, driving license, NOC.
+
+- id: nagarik-app-otp-not-received
+  niche: e-gov
+  title: "Nagarik App OTP Not Received — 6 Verified Fixes (2026)"
+  description: "Nagarik App not sending OTP? Fix SIM issues, app cache, server errors, and what to do when the Nagarik App shows 'service unavailable'."
+  keywords:
+    - "nagarik app otp not received"
+    - "nagarik app error"
+    - "nagarik app not working"
+    - "नागरिक एप ओटिपी आएन"
+    - "nagarik app login problem"
+    - "nagarik app server error"
+  tags: [nagarik-app, otp, verification, e-gov]
+  sources:
+    - https://nagarikapp.gov.np
+    - https://www.nid.gov.np
+  summary:
+    - problem: "OTP SMS not arriving"
+      cause: "SIM registered under different name/number, or SMS blocked"
+      fix: "Verify SIM in your name, re-request OTP, check spam"
+    - problem: "OTP arrives but app rejects it"
+      cause: "Expired OTP or wrong phone linked to NID"
+      fix: "Request a fresh OTP within 2 minutes"
+    - problem: "'Service unavailable' error"
+      cause: "Server overload (peak hours)"
+      fix: "Retry early morning; use LTE/4G, not WiFi from abroad"
+  steps:
+    - title: "Check the SIM and phone number"
+      body: |
+        1. The SIM must be registered in your own name (matches NID records).
+        2. Confirm your phone number is linked to the same NID at the ward office.
+        3. If not, update the number at the nearest local body office before retrying.
+    - title: "Force-close and reopen the app"
+      body: |
+        1. Close the Nagarik App completely from recent apps.
+        2. Turn airplane mode on for 10 seconds, then off.
+        3. Reopen the app and request OTP again.
+    - title: "Clear the app cache"
+      body: |
+        1. Android: Settings > Apps > Nagarik App > Storage > Clear Cache.
+        2. Do NOT clear data unless you want to log in fresh.
+        3. Restart the app and request OTP.
+    - title: "Re-request OTP within the window"
+      body: |
+        1. OTPs expire in about 2 minutes.
+        2. Enter it immediately when the SMS arrives.
+        3. If it is rejected, request a fresh one — old codes never work.
+    - title: "Avoid VPN and foreign networks"
+      body: |
+        1. The app checks the SIM network; VPNs or roaming often break verification.
+        2. Switch off VPN, use Nepali 4G/LTE on the registered SIM.
+        3. Disable call-forwarding features that may eat the SMS.
+    - title: "Escalate to support"
+      body: |
+        1. Try again after 10:00 PM or before 8:00 AM — servers are less loaded.
+        2. If the issue persists for days, visit the nearest local body office or call the NID help desk with your NID number.
+  troubleshooting:
+    - problem: "App stuck on 'please wait' after OTP"
+      cause: "Server overload or outdated app"
+      fix: "Update the app from Play Store / App Store, retry later"
+    - problem: "App crashes on open"
+      cause: "Old Android version or corrupted install"
+      fix: "Update Android WebView, reinstall the app"
+    - problem: "No option for foreigners"
+      cause: "App requires NID-linked SIM"
+      fix: "Use the portal version on nagarikapp.gov.np with passport details where supported"
+  faq:
+    - q: "How long is the Nagarik App OTP valid?"
+      a: "About 2 minutes. If it expires, request a new OTP rather than re-entering the old one."
+    - q: "Can I use Nagarik App with a SIM not in my name?"
+      a: "No. The SIM must be registered in your own name for verification to pass."
+    - q: "Is Nagarik App free?"
+      a: "Yes, the app and digital documents are free; you only pay for printed documents when requested."
+  affiliate: "none"
+
+- id: nid-card-online-application-error
+  niche: e-gov
+  title: "NID Online Application Error — How to Fix Common Failures (2026)"
+  description: "National ID (NID) online application failing? Fix photo and signature upload errors, browser issues, payment errors and 'already registered' problems."
+  keywords:
+    - "nid online application error"
+    - "nid registration problem"
+    - "national id card nepal application"
+    - "nid photo upload error"
+    - "राष्ट्रिय परिचयपत्र आवेदन"
+  tags: [nid, national-id, e-gov, application]
+  sources:
+    - https://www.nid.gov.np
+  summary:
+    - problem: "Photo upload keeps failing"
+      cause: "File too large or wrong format"
+      fix: "Use JPEG under 100 KB, 200x200 px, clear background"
+    - problem: "'Already registered' message"
+      cause: "A previous NID enrollment exists"
+      fix: "Use the 'forgot' flow with your old details, or visit district office"
+    - problem: "Page won't load / error 500"
+      cause: "Server load or old browser"
+      fix: "Use Chrome on a PC with stable internet, retry off-peak"
+  steps:
+    - title: "Prepare correct documents and files"
+      body: |
+        1. Keep your citizenship scan (front and back) ready as JPEG/PDF.
+        2. Prepare a passport-size photo: clear background, no shadow.
+        3. Keep your signature image small in size (under 100 KB is safest).
+    - title: "Use the right browser and connection"
+      body: |
+        1. Use the latest Chrome or Edge on a PC or laptop.
+        2. Disable VPN and ad-blockers — they break the portal.
+        3. Use a stable internet connection; avoid mobile hotspot if possible.
+    - title: "Fix photo/signature upload errors"
+      body: |
+        1. Resize the photo to exactly 200x200 pixels (JPEG).
+        2. Ensure file size is within the portal limit (check the help text).
+        3. Upload signature as JPEG too, then preview before submitting.
+    - title: "Handle 'already registered' errors"
+      body: |
+        1. Select 'Already applied?' and try the search option with your details.
+        2. If you applied at a ward office, get your application number from them.
+        3. Visit the district NID office with citizenship if the issue persists.
+    - title: "Complete payment correctly"
+      body: |
+        1. Payment is done via the portal — use eSewa, Khalti, or bank link shown.
+        2. If payment fails, wait 10 minutes before retrying — do not pay twice.
+        3. Keep the payment receipt; it proves your application.
+    - title: "Track application status"
+      body: |
+        1. Log in to the portal and check status under 'My Application'.
+        2. Inquiries take a few weeks; the card is delivered via ward office.
+        3. If status shows 'rejected', correct the reason shown and re-apply.
+  troubleshooting:
+    - problem: "OTP not received for NID portal"
+      cause: "Number mismatch with NID records"
+      fix: "Update phone number at your local body first"
+    - problem: "Payment deducted but application not submitted"
+      cause: "Session timeout during payment"
+      fix: "Contact the NID help desk with the receipt within 7 days"
+    - problem: "Site shows maintenance"
+      cause: "Scheduled upgrades"
+      fix: "Retry after a few hours; the portal announces downtime on its site"
+  faq:
+    - q: "Is the NID application fee paid online?"
+      a: "Yes, the online application fee is paid through the portal using local payment methods; printed cards have separate charges."
+    - q: "Can I apply for NID without a citizenship card?"
+      a: "No, citizenship is the primary document for NID enrollment."
+    - q: "How long does the NID card take to arrive?"
+      a: "Usually a few weeks after approval; delivery is through your ward office."
+  affiliate: "none"
+
+- id: passport-appointment-esewa-khalti-error
+  niche: e-gov
+  title: "Passport Appointment Payment Error (eSewa/Khalti) — Fixes (2026)"
+  description: "DoIA passport portal payment failing with eSewa or Khalti? Fix token expiry, card issues, browser errors, and complete your passport appointment payment."
+  keywords:
+    - "passport appointment payment error"
+    - "passport esewa payment failed"
+    - "doia payment not working"
+    - "राहदानी शुल्क तिर्न नसकेको"
+    - "passport khalti error"
+    - "nepal passport appointment"
+  tags: [passport, doia, esewa, khalti, payment]
+  sources:
+    - https://www.nepalpassport.gov.np
+    - https://www.doia.gov.np
+  summary:
+    - problem: "Payment page not loading after form"
+      cause: "Browser pop-up/session issue"
+      fix: "Clear cookies, disable blockers, retry in Chrome"
+    - problem: "eSewa/Khalti payment declined"
+      cause: "Token expired or wallet limit"
+      fix: "Re-enter payment within 15 minutes; check wallet balance"
+    - problem: "Paid but no appointment shown"
+      cause: "Callback timeout on the portal"
+      fix: "Wait 30 minutes, refresh; keep the receipt"
+  steps:
+    - title: "Before starting: check eligibility and slots"
+      body: |
+        1. Confirm you have a valid NID or citizenship number.
+        2. Check appointment slots — schedule when districts show availability.
+        3. Have your passport-size photo ready as JPEG (per portal spec).
+    - title: "Fill the application in one sitting"
+      body: |
+        1. Complete the form within the session time to avoid expiry.
+        2. Save the application number as soon as it is generated.
+        3. If the session expires, resume with the application number.
+    - title: "Pay via eSewa or Khalti correctly"
+      body: |
+        1. At the payment step, choose eSewa or Khalti.
+        2. You will be redirected to the wallet login; complete within 15 minutes.
+        3. Ensure your wallet has enough balance — the passport fee varies by type.
+    - title: "If payment fails, do this first"
+      body: |
+        1. Do NOT retry immediately — wait 10 minutes to avoid double charges.
+        2. Clear browser cache/cookies and disable ad-block.
+        3. Try the other payment method (eSewa vs Khalti) if one fails.
+    - title: "Payment deducted but no appointment?"
+      body: |
+        1. Wait 30 minutes and refresh the 'My Application' page.
+        2. If still missing, screenshot the receipt and the application number.
+        3. Contact the DoIA help desk (email on nepalpassport.gov.np) with both.
+    - title: "Print appointment slip"
+      body: |
+        1. Once payment reflects, open the appointment schedule.
+        2. Select your district and preferred date.
+        3. Print or screenshot the appointment slip — required at the counter.
+  troubleshooting:
+    - problem: "Portal says 'session expired'"
+      cause: "Idle too long"
+      fix: "Restart from login with the same application number"
+    - problem: "Khalti balance deducted twice"
+      cause: "Double click on pay"
+      fix: "File a refund request in the wallet app; one will be reversed"
+    - problem: "No appointment slots in my district"
+      cause: "Slots open weekly"
+      fix: "Check again on Sunday/Monday mornings; slots open in batches"
+  faq:
+    - q: "How much is the passport application fee?"
+      a: "Fees change with passport type and urgency; the portal shows the exact amount before payment."
+    - q: "Can I pay for someone else's passport?"
+      a: "Yes, if you log in to their application with the application number, but the biometric appointment must be theirs."
+    - q: "What if my payment fails at the last step?"
+      a: "Wait 10 minutes and retry; if the amount was deducted, the portal shows it after refreshing."
+  affiliate: "none"
+
+- id: driving-license-online-application-fix
+  niche: e-gov
+  title: "Driving License Online Application Errors — Fix Guide (2026)"
+  description: "DoTM driving license online application failing? Fix photo errors, payment problems, duplicate applications, and verification issues on the DoTM portal."
+  keywords:
+    - "driving license online application nepal"
+    - "dotm application error"
+    - "driving license photo upload error"
+    - "लाइसेन्स आवेदन समस्या"
+    - "license payment esewa"
+    - "dotm portal not working"
+  tags: [driving-license, dotm, e-gov, application]
+  sources:
+    - https://www.dotm.gov.np
+  summary:
+    - problem: "Form doesn't submit"
+      cause: "Missing field or expired session"
+      fix: "Fill all fields, use Chrome, restart if session expired"
+    - problem: "Payment fails at bank/eSewa"
+      cause: "Portal or gateway timeout"
+      fix: "Retry after 10 minutes; keep the failed transaction ID"
+    - problem: "Application shows duplicate"
+      cause: "A previous application exists"
+      fix: "Check status with your application number before re-applying"
+  steps:
+    - title: "Check prerequisites"
+      body: |
+        1. You need a valid NID or citizenship number.
+        2. For renewals, keep the old license number handy.
+        3. Prepare a passport-size photo in the portal's required format.
+    - title: "Fill the form carefully"
+      body: |
+        1. Use the latest Chrome or Edge browser.
+        2. Fill every required field — mismatched spelling causes rejections.
+        3. Double-check your NID number before submitting.
+    - title: "Upload photo and signature"
+      body: |
+        1. Use JPEG files within the size limit shown on the portal.
+        2. Face must be clearly visible with plain background.
+        3. Preview the upload before final submission.
+    - title: "Pay the license fee"
+      body: |
+        1. Payment goes through the portal gateway (bank, eSewa, or Khalti).
+        2. Complete payment within the session window.
+        3. If it fails, wait 10 minutes before retrying — never double-pay.
+    - title: "Book the written exam slot"
+      body: |
+        1. After payment, select a written exam (license test) date.
+        2. Choose a district with availability; slots open periodically.
+        3. Print the exam slip — bring it with your citizenship on exam day.
+    - title: "Track and troubleshoot status"
+      body: |
+        1. Check status at dotm.gov.np using the application number.
+        2. If 'rejected', read the reason and correct it in a re-application.
+        3. For portal bugs, email the DoTM help desk with the application number.
+  troubleshooting:
+    - problem: "No SMS confirmation after application"
+      cause: "Number not updated in DoTM records"
+      fix: "Update the phone number at the transport office or use the portal lookup"
+    - problem: "Photo rejected for being too dark"
+      cause: "Poor lighting"
+      fix: "Retake in daylight against a white wall, re-upload"
+    - problem: "Exam date not shown for my district"
+      cause: "District exam schedule"
+      fix: "Check the DoTM exam calendar; dates are announced per district"
+  faq:
+    - q: "Can I apply for a driving license online without NID?"
+      a: "The portal requires your NID or citizenship details for verification."
+    - q: "What is the license application fee?"
+      a: "Fees vary by category and are displayed before payment on the portal."
+    - q: "My payment failed — will I be charged again?"
+      a: "No, failed payments are not charged. If deducted, the refund comes via the gateway within a few days."
+  affiliate: "none"
+
+- id: noc-certificate-online-fix
+  niche: e-gov
+  title: "NOC (No Objection Certificate) Online Application Errors — Fixes (2026)"
+  description: "Fix problems applying for NOC online for education or employment: verification errors, document upload issues, payment failures, and status tracking."
+  keywords:
+    - "noc application nepal"
+    - "noc online error"
+    - "no objection certificate nepal"
+    - "noc payment failed"
+    - "noc for study abroad"
+  tags: [noc, education, e-gov, application]
+  sources:
+    - https://www.noc.gov.np
+  summary:
+    - problem: "Citizenship verification fails"
+      cause: "NID/old citizenship mismatch"
+      fix: "Re-enter details exactly as on the document"
+    - problem: "Documents rejected"
+      cause: "Unclear scans"
+      fix: "Use clean scans, correct file types and sizes"
+    - problem: "Payment not going through"
+      cause: "Gateway timeout"
+      fix: "Retry after 10 minutes, try another payment method"
+  steps:
+    - title: "Know your purpose"
+      body: |
+        1. NOC for study or employment has different forms — choose the right one.
+        2. Check the receiving institution's requirement (many universities need the NOC stamp).
+        3. Keep your admission letter or job offer ready.
+    - title: "Verify your identity details"
+      body: |
+        1. Enter your name, DOB, and citizenship/NID number exactly as printed.
+        2. A single mismatch fails verification — do not use short forms.
+        3. If you hold old-style citizenship, use the number format shown on the portal.
+    - title: "Upload clean documents"
+      body: |
+        1. Scan documents (front and back) in good light — no shadows.
+        2. Use the file format and size the portal asks for (usually JPEG/PDF).
+        3. Name files clearly (e.g., citizenship_front.jpg) to avoid mix-ups.
+    - title: "Pay the processing fee"
+      body: |
+        1. Pay via the portal using eSewa, Khalti, or bank options.
+        2. Complete within the session time to avoid token expiry.
+        3. Save the receipt — you need it to collect the certificate.
+    - title: "Track and collect"
+      body: |
+        1. Status updates appear on the portal (processing, approved, ready).
+        2. Once approved, collect in person with ID and the receipt, or follow the dispatch option if offered.
+        3. Check validity dates on the certificate before travel or admission.
+    - title: "If errors persist"
+      body: |
+        1. Screenshot the exact error message and note the time.
+        2. Contact the portal help desk or visit the issuing office.
+        3. Keep the application number for every support request.
+  troubleshooting:
+    - problem: "Portal not loading from abroad"
+      cause: "Geo-restriction or firewall"
+      fix: "Use a Nepali network or ask someone in Nepal to submit"
+    - problem: "Fee paid but certificate not issued"
+      cause: "Verification pending"
+      fix: "Wait 3-5 working days; then escalate with the receipt"
+    - problem: "Name mismatch with passport"
+      cause: "Different transliteration"
+      fix: "Correct via the issuing office before application"
+  faq:
+    - q: "Is the NOC issued online?"
+      a: "The application is online; collection may require a physical visit depending on the office."
+    - q: "How long does NOC approval take?"
+      a: "Usually a few working days after document verification."
+    - q: "Do I need NOC for every study destination?"
+      a: "Most foreign institutions and embassies ask for it — confirm with the receiving institution first."
+  affiliate: "none"

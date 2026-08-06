@@ -1,0 +1,51 @@
+# Monitoring sources — all free, keyless.
+reddit:
+  subreddits:
+    - Nepal
+    - technepal
+    - NepalSocial
+  base_url: "https://www.reddit.com"
+  user_agent: "nepal-helpdesk/1.0 (community troubleshooting monitor; contact: repo issues)"
+  per_subreddit_new: 40
+  search_keywords:
+    - "worldlink router"
+    - "vianet internet"
+    - "subisu no internet"
+    - "nt fiber"
+    - "nagarik app"
+    - "nid card"
+    - "passport appointment"
+    - "driving license"
+    - "esewa error"
+    - "khalti not working"
+    - "daraz seller"
+    - "no internet"
+    - "wifi not working"
+    - "com.np domain"
+  search_limit: 25
+
+rss:
+  - name: "NeoStuffs"
+    url: "https://neostuffs.com/feed/"
+  - name: "NepaliTelecom"
+    url: "https://www.nepalitelecom.com/feed"
+  - name: "Hamro Patro Blog"
+    url: "https://blog.hamropatro.com/feed"
+  - name: "Sastodeal Blog"
+    url: "https://blog.sastodeal.com/feed"
+  - name: "Code for Nepal"
+    url: "https://codefornepal.org/feed"
+
+google_news:
+  base_url: "https://news.google.com/rss/search"
+  keywords:
+    - "WorldLink internet Nepal"
+    - "Nepal Telecom fiber"
+    - "Nagarik App"
+    - "eSewa"
+    - "Khalti"
+    - "NID Nepal"
+    - "passport Nepal"
+    - ".com.np domain"
+  when: "7d"
+  limit: 15

@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { CATEGORIES, SITE } from '../config';
+
+const articles = (await getCollection('articles'))
+  .filter((a) => a.data.confidence !== 'medium')
+  .sort((a, b) => (b.data.trendingScore || 0) - (a.data.trendingScore || 0) || b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const recent = [...articles]
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, 12);
+---
+
+<BaseLayout title={`${SITE.name} — Nepal Tech Troubleshooting Help Desk`} description={SITE.description}>
+  <div class="hero">
+    <h1>Fix your tech, Nepal-style.</h1>
+    <p>
+      Step-by-step, verified solutions for Nepal's most common problems — WorldLink and Vianet
+      routers, Nagarik App, eSewa &amp; Khalti, .com.np domains, Daraz selling and more.
+    </p>
+    <div class="search-wrap">
+      <input id="q" type="search" placeholder="Search problems… e.g. Nagarik app OTP, WorldLink no internet" autocomplete="off" />
+    </div>
+    <div class="chips">
+      {CATEGORIES.map((c) => <a class="chip" href={`/category/${c.slug}/`}>{c.label}</a>)}
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="section-title">Trending now <span>— from Nepali tech communities</span></h2>
+    <div class="grid">
+      {recent.map((article) => <ArticleCard article={article} />)}
+    </div>
+
+    <h2 class="section-title">Browse by category</h2>
+    <div class="grid">
+      {CATEGORIES.map((c) => (
+        <a class="card" href={`/category/${c.slug}/`}>
+          <span class="tag">Category</span>
+          <h3>{c.label}</h3>
+          <p>{c.blurb}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const input = document.getElementById('q') as HTMLInputElement | null;
+  input?.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Enter' && input.value.trim()) {
+      window.location.href = `/search/?q=${encodeURIComponent(input.value.trim())}`;
+    }
+  });
+</script>

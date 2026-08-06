@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { CATEGORIES } from '../../config';
+
+export function getStaticPaths() {
+  return CATEGORIES.map((c) => ({ params: { niche: c.slug }, props: { category: c } }));
+}
+
+const { category } = Astro.props;
+const articles = (await getCollection('articles'))
+  .filter((a) => a.data.niche === category.slug)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<BaseLayout
+  title={`${category.label} fixes — NepalHelpDesk`}
+  description={category.blurb}
+>
+  <div class="container">
+    <div class="article-head">
+      <span class="kicker">Category</span>
+      <h1>{category.label}</h1>
+      <p>{category.blurb}</p>
+    </div>
+
+    {articles.length === 0 && <div class="empty">Guides are being generated for this category. Check back soon.</div>}
+
+    <div class="grid">
+      {articles.map((article) => <ArticleCard article={article} showCategory={false} />)}
+    </div>
+  </div>
+</BaseLayout>

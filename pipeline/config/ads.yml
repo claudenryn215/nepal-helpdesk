@@ -1,0 +1,17 @@
+# Ad slot configuration.
+# Placeholders render as styled boxes on the site. To go live with a real
+# network (e.g. Google AdSense), flip `enabled: true`, set your publisher
+# ID, and paste the network snippet into site/src/components/AdSlot.astro.
+enabled: false
+network: adsense
+publisher_id: ""
+slots:
+  in-article-1:
+    label: "Ad Slot — in-article 1"
+    min_height_px: 90
+  in-article-2:
+    label: "Ad Slot — in-article 2"
+    min_height_px: 90
+  sidebar-1:
+    label: "Ad Slot — sidebar 1"
+    min_height_px: 250

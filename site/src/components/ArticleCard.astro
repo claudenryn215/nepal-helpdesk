@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { categoryLabel } from '../config';
+
+interface Props {
+  article: CollectionEntry<'articles'>;
+  showCategory?: boolean;
+}
+
+const { article, showCategory = true } = Astro.props;
+const { data } = article;
+const pub = data.publishedAt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+
+<a class="card" href={`/articles/${article.id}/`}>
+  {showCategory && <span class="tag">{categoryLabel(data.niche)}</span>}
+  <h3>{data.title}</h3>
+  <p>{data.description}</p>
+  <div class="meta">
+    <span>{pub}</span>
+    {data.confidence !== 'medium' && <span class="verified">Verified</span>}
+  </div>
+</a>

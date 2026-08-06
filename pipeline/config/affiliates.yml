@@ -1,0 +1,18 @@
+# Affiliate placeholders.
+# NOTE: "darax" is a safe placeholder key. When you join a real affiliate
+# program (Daraz Affiliate, Brother-Mart, Nest Nepal), replace the URL
+# template with your tagged link (e.g. https://www.daraz.com.np/?utm_...)
+# and keep the {q} token for keyword-targeted links.
+affiliates:
+  darax:
+    label: "Buy on Daraz"
+    url_template: "https://www.daraz.com.np/#!?q={q}"
+    rel: "sponsored nofollow"
+  brothermart:
+    label: "Brother-Mart Nepal"
+    url_template: "https://brother-mart.com/?s={q}"
+    rel: "sponsored nofollow"
+  nestnepal:
+    label: "Nest Nepal"
+    url_template: "https://nestnepal.com/?s={q}"
+    rel: "sponsored nofollow"

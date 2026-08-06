@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config';
+---
+
+<BaseLayout title={`About — ${SITE.name}`} description="How NepalHelpDesk works">
+  <div class="container">
+    <div class="article-head">
+      <h1>About {SITE.name}</h1>
+    </div>
+    <article class="prose">
+      <p>
+        {SITE.name} is an automated troubleshooting help desk for Nepal. We monitor Nepali online
+        communities — Reddit's r/Nepal and r/technepal, tech blogs and news feeds — for the most
+        repeated technical problems, then publish clear, step-by-step fixes.
+      </p>
+      <h2>How accuracy is handled</h2>
+      <ul>
+        <li>Every guide is checked against a curated knowledge base of verified fixes and official support pages before publishing.</li>
+        <li>Each article shows a "Last verified" date and its sources.</li>
+        <li>Articles older than 90 days are automatically re-checked and refreshed.</li>
+      </ul>
+      <h2>What we cover</h2>
+      <ul>
+        <li>ISP router setups and WiFi fixes — WorldLink, Vianet, Subisu, NT Fiber</li>
+        <li>e-Governance errors — Nagarik App, NID, passport, driving license, NOC</li>
+        <li>FinTech workflows — eSewa, Khalti, free .com.np domains</li>
+        <li>Micro-merchant guides — Daraz seller dashboard and payouts</li>
+      </ul>
+      <p>
+        {SITE.name} is not affiliated with any ISP, bank, or government office. Guides are
+        community-sourced and independently verified.
+      </p>
+    </article>
+  </div>
+</BaseLayout>

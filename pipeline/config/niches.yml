@@ -1,0 +1,40 @@
+# Niche taxonomy for topic classification.
+niches:
+  isp:
+    label: "Internet & ISP"
+    keywords: [worldlink, vianet, subisu, "nt fiber", "ntc fiber", router, wifi, fiber, internet, ont, onu, pppoe, modem, dns, bandwidth, mpls, isp]
+  e-gov:
+    label: "e-Governance"
+    keywords: [nagarik, nid, "national id", passport, "driving license", license, dotm, doia, noc, "no objection", citizenship, g2c, ward]
+  fintech:
+    label: "FinTech & Payments"
+    keywords: [esewa, khalti, wallet, kyc, payment gateway, merchant, "com.np", domain, ipay, fonepey, fonepay, bank connect, top up, topup]
+  ecommerce:
+    label: "E-commerce & Selling"
+    keywords: [daraz, seller, listing, sku, ecommerce, sastodeal, delivery, courier, dropshipping]
+  general:
+    label: "General Tech"
+    keywords: [phone, laptop, charging, battery, screen, sim, ntc, "ncell", android, ios, whatsapp, viber, telegram, bluetooth, update]
+
+exclude_terms:
+  - "job opening"
+  - "looking for job"
+  - "salary"
+  - "memes"
+  - "dating"
+  - "relationship"
+  - "trip planning"
+  - "trekking"
+  - "fashion"
+  - "movie"
+  - "cricket"
+  - "football"
+  - "politics"
+
+trending:
+  min_mentions: 2            # min posts mentioning similar topic to count as trending
+  recency_half_life_hours: 72
+  engagement_weight: 0.4
+  mention_weight: 0.35
+  recency_weight: 0.25
+  top_n: 5

@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+
+const all = await getCollection('articles');
+const query = (Astro.url.searchParams.get('q') ?? '').trim().toLowerCase();
+
+const results = query
+  ? all
+      .filter((a) => {
+        const haystack = [a.data.title, a.data.description, ...a.data.keywords, ...a.data.tags]
+          .join(' ')
+          .toLowerCase();
+        return query.split(/\s+/).every((part) => haystack.includes(part));
+      })
+      .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  : [];
+---
+
+<BaseLayout title={`Search — NepalHelpDesk`} description="Search NepalHelpDesk guides">
+  <div class="container">
+    <div class="article-head">
+      <h1>Search</h1>
+      <form method="get" action="/search/" style="display:flex;gap:8px;max-width:480px">
+        <input
+          type="search"
+          name="q"
+          value={query}
+          placeholder="e.g. Nagarik app error, WorldLink router…"
+          style="flex:1;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:1rem"
+        />
+        <button class="btn" type="submit">Search</button>
+      </form>
+    </div>
+
+    {query && results.length === 0 && (
+      <div class="empty">
+        <p>No guides match "<strong>{query}</strong>" yet.</p>
+        <p>New guides are published automatically every few hours — check back soon.</p>
+      </div>
+    )}
+
+    <div class="grid">
+      {results.map((article) => <ArticleCard article={article} />)}
+    </div>
+  </div>
+</BaseLayout>

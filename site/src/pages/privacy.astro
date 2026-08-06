@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config';
+---
+
+<BaseLayout title={`Privacy — ${SITE.name}`} description="Privacy policy">
+  <div class="container">
+    <div class="article-head">
+      <h1>Privacy Policy</h1>
+    </div>
+    <article class="prose">
+      <p>Last updated: {new Date().toISOString().slice(0, 10)}</p>
+      <p>
+        {SITE.name} is a static website. We do not run accounts, collect personal data, or store
+        cookies.
+      </p>
+      <h2>Third-party content</h2>
+      <p>
+        Guides may contain affiliate links (such as Daraz) and advertising slots. Those services
+        have their own privacy policies. If advertising is enabled, the ad provider may use cookies
+        to serve personalized ads.
+      </p>
+      <h2>Contact</h2>
+      <p>Questions about privacy: see the <a href="/contact/">Contact</a> page.</p>
+    </article>
+  </div>
+</BaseLayout>

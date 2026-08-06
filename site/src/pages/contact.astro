@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config';
+---
+
+<BaseLayout title={`Contact — ${SITE.name}`} description="Contact NepalHelpDesk">
+  <div class="container">
+    <div class="article-head">
+      <h1>Contact</h1>
+    </div>
+    <article class="prose">
+      <p>
+        Found an error in a guide, or want to suggest a topic? Open an issue on the project
+        repository or send feedback via the repo linked from the site footer.
+      </p>
+      <p>
+        Corrections are reviewed and applied automatically in the next publishing cycle when they
+        match an official source.
+      </p>
+    </article>
+  </div>
+</BaseLayout>

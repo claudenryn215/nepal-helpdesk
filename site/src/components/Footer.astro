@@ -1,0 +1,18 @@
+---
+import { SITE } from '../config';
+const year = new Date().getFullYear();
+---
+
+<footer class="site">
+  <div class="container">
+    <p>
+      <strong>{SITE.name}</strong> — step-by-step tech fixes for Nepal, verified and updated
+      automatically.
+    </p>
+    <p>
+      <a href="/about/">About</a> &middot; <a href="/privacy/">Privacy</a> &middot;
+      <a href="/contact/">Contact</a>
+    </p>
+    <p>&copy; {year} {SITE.name}. Community troubleshooting guides — not affiliated with any ISP or government office.</p>
+  </div>
+</footer>

@@ -1,0 +1,294 @@
+# ISP knowledge base — verified solutions for Nepal's major ISPs.
+# Each entry: id, niche, title, description, keywords, tags, sources,
+# summary (quick answers table), steps, troubleshooting, faq, affiliate.
+
+- id: worldlink-router-no-internet
+  niche: isp
+  title: "WorldLink Router No Internet Light — 7 Fixes That Work (2026)"
+  description: "Your WorldLink router shows no internet light? Try these verified fixes — power cycle, fiber check, router login at 192.168.1.1, DNS change, and calling WorldLink support at 01-5970050."
+  keywords:
+    - "worldlink router no internet"
+    - "worldlink no internet light"
+    - "worldlink wifi connected but no internet"
+    - "वर्ल्डलिंक इन्टरनेट नचलेको"
+    - "192.168.1.1 worldlink"
+    - "worldlink router reset"
+  tags: [worldlink, router, wifi, fiber]
+  sources:
+    - https://www.worldlink.com.np/support
+    - https://www.worldlink.com.np/contact
+  summary:
+    - problem: "WiFi connected but no internet"
+      cause: "DHCP lease expired or DNS failure"
+      fix: "Reboot router, then set DNS to 8.8.8.8 / 1.1.1.1"
+    - problem: "No PON / optical light on ONT"
+      cause: "Fiber line cut, loose connector, or OLT port fault"
+      fix: "Reseat the green fiber cable gently, then call support"
+    - problem: "Internet light blinking fast"
+      cause: "Line fault registered with the ISP"
+      fix: "Wait 10 minutes, power cycle, then call 01-5970050"
+  steps:
+    - title: "Power cycle the router and ONT"
+      body: |
+        1. Switch off the router and the ONT unit.
+        2. Wait 60 seconds.
+        3. Switch both back on and wait 2 minutes for the PON and internet lights to sync.
+    - title: "Check the fiber connection"
+      body: |
+        1. Look at the back of the ONT for the green fiber cable.
+        2. Push the connector in until it clicks.
+        3. Check for sharp bends or cuts in the fiber near the window or wall.
+    - title: "Log in to the router admin page"
+      body: |
+        1. Connect to the router WiFi.
+        2. Open a browser and visit `192.168.1.1`.
+        3. Use the admin password printed on the router sticker (default user is often `admin`).
+    - title: "Set a working DNS"
+      body: |
+        1. In the admin page go to Network > WAN > DNS.
+        2. Set primary DNS `8.8.8.8` and secondary `1.1.1.1`.
+        3. Save and reboot the router.
+    - title: "Factory reset the router"
+      body: |
+        1. Press and hold the reset button at the back for 10 seconds until all lights blink.
+        2. Wait for the router to reboot, then reconnect WiFi.
+        3. Re-enter WiFi name and password from the sticker.
+    - title: "Call WorldLink support"
+      body: |
+        1. If the PON light is still off after 15 minutes, call **01-5970050**.
+        2. Give them your customer ID (from your bill) and report the OLT port issue.
+        3. Ask for a ticket number and expected resolution time.
+  troubleshooting:
+    - problem: "Only power light is on"
+      cause: "ONT firmware crashed or hardware fault"
+      fix: "Hold reset for 30 seconds; if no change, request ONT replacement"
+    - problem: "WiFi slow on all devices"
+      cause: "Congestion or old firmware"
+      fix: "Enable 5 GHz band, update firmware from admin page"
+    - problem: "Internet drops every few hours"
+      cause: "WAN lease or port flapping"
+      fix: "Change WAN DHCP lease to weekly or ask ISP to reset OLT port"
+  faq:
+    - q: "What does the red internet light on my WorldLink router mean?"
+      a: "The router is not receiving signal from the fiber line. Check the ONT PON light first; if PON is off, call support."
+    - q: "How do I reset my WorldLink router?"
+      a: "Hold the reset button at the back for 10 seconds until all lights blink, then reconfigure via 192.168.1.1."
+    - q: "Why is my WorldLink WiFi slow at night?"
+      a: "Peak-hour congestion. Try the 5 GHz band and restart the router before 8 PM."
+  affiliate: "darax|router"
+
+- id: vianet-router-slow-wifi-fix
+  niche: isp
+  title: "Vianet WiFi Slow or Disconnecting — Complete Fix Guide (2026)"
+  description: "Fix slow Vianet WiFi: reboot ONT, check 192.168.1.1 settings, switch channels, move router, update firmware, and when to call Vianet support at 01-5970711."
+  keywords:
+    - "vianet slow internet"
+    - "vianet wifi not working"
+    - "vianet router login"
+    - "vianet no internet"
+    - "वायनेट इन्टरनेट ढिलो"
+    - "vianet router setup"
+  tags: [vianet, router, wifi, speed]
+  sources:
+    - https://www.vianet.com.np/support
+    - https://www.vianet.com.np/contact
+  summary:
+    - problem: "Internet slow on WiFi, fast on LAN"
+      cause: "Weak signal or channel congestion"
+      fix: "Use 5 GHz band or change WiFi channel"
+    - problem: "No internet light"
+      cause: "ONT or cable fault"
+      fix: "Power cycle ONT and router; reseat LAN cable"
+    - problem: "Frequent disconnects"
+      cause: "Router overheating or outdated firmware"
+      fix: "Move router to open area, update firmware"
+  steps:
+    - title: "Restart the ONT and router"
+      body: |
+        1. Unplug both the ONT and the WiFi router.
+        2. Wait 2 minutes, plug in the ONT first, then the router.
+        3. Test speed on both LAN cable and WiFi.
+    - title: "Connect to the router admin page"
+      body: |
+        1. Connect to the Vianet WiFi network.
+        2. Open a browser and go to `192.168.1.1`.
+        3. Enter the credentials from the router sticker.
+    - title: "Switch to 5 GHz and change the channel"
+      body: |
+        1. Go to Wireless Settings.
+        2. Enable the 5 GHz band and give it a separate name (SSID).
+        3. Set 2.4 GHz channel to 1, 6 or 11 — the least crowded.
+    - title: "Check connected devices"
+      body: |
+        1. In admin page, open DHCP Clients list.
+        2. Disconnect devices you do not recognize (possible password sharing).
+        3. Change the WiFi password to a strong one if unknown devices are present.
+    - title: "Update router firmware"
+      body: |
+        1. In admin page, go to System Tools > Firmware Upgrade.
+        2. Click check for updates and confirm.
+        3. Wait 3–5 minutes; do not unplug during update.
+    - title: "Call Vianet support"
+      body: |
+        1. Call **01-5970711** (Vianet call center).
+        2. Mention your customer ID and speed test results.
+        3. Ask them to check the OLT port and line signal (RSL).
+  troubleshooting:
+    - problem: "Speed lower than plan at all times"
+      cause: "Plan limits or line signal issue"
+      fix: "Run speedtest.net with LAN cable, share results with support"
+    - problem: "WiFi drops at night"
+      cause: "Neighbor interference"
+      fix: "Change channel to 1/6/11 and enable auto channel selection"
+    - problem: "One device slow, others fine"
+      cause: "Device issue, not connection"
+      fix: "Forget network, rejoin; update device drivers"
+  faq:
+    - q: "What is Vianet's default router password?"
+      a: "It is printed on the router sticker (often admin / admin). Never leave it default — change it in admin settings."
+    - q: "Why is my Vianet internet slow at peak hours?"
+      a: "Shared bandwidth congestion in your area; request a higher plan or business plan for dedicated bandwidth."
+    - q: "Can I use my own router with Vianet fiber?"
+      a: "Yes, configure it in bridge or PPPoE mode with your Vianet username and password, or ask support for credentials."
+  affiliate: "darax|router"
+
+- id: subisu-wifi-no-internet
+  niche: isp
+  title: "Subisu No Internet — 6 Step Fix for WiFi and Cable Modem (2026)"
+  description: "Subisu internet not working? Fix cable modem lights, reset, check 192.168.100.1 status page, verify coaxial connection, and call Subisu support 01-5970750."
+  keywords:
+    - "subisu no internet"
+    - "subisu wifi not working"
+    - "subisu modem reset"
+    - "subisu internet slow"
+    - "सुबिसु इन्टरनेट"
+    - "subisu customer care"
+  tags: [subisu, cable, modem, wifi]
+  sources:
+    - https://www.subisu.net.np/contact
+    - https://www.subisu.net.np
+  summary:
+    - problem: "Modem online light off"
+      cause: "Cable signal issue or outage in area"
+      fix: "Reseat coaxial cable and check outage status"
+    - problem: "WiFi connects but no internet"
+      cause: "Modem needs restart or MAC bind issue"
+      fix: "Restart modem, wait 5 minutes, then test"
+    - problem: "Very slow uploads"
+      cause: "Coaxial signal (SNR) below standard"
+      fix: "Ask support to check SNR and power levels"
+  steps:
+    - title: "Restart the cable modem"
+      body: |
+        1. Unplug the modem power adapter.
+        2. Wait 2 minutes.
+        3. Plug back in and wait for all lights to stabilize (up to 5 minutes).
+    - title: "Check the coaxial cable"
+      body: |
+        1. Tighten the screw connector at the modem and the wall splitter.
+        2. Check the splitter — too many splitters weaken the signal.
+        3. Avoid bending the cable sharply near windows.
+    - title: "Check the modem status page"
+      body: |
+        1. Open a browser and visit `192.168.100.1` (cable modems) or `192.168.1.1`.
+        2. Look at the downstream/upstream power levels and SNR.
+        3. If SNR is below ~30 dB or power is far from range, report it to support.
+    - title: "Reset the modem"
+      body: |
+        1. Insert a pin in the reset hole for 10 seconds.
+        2. Wait for reboot, reconnect WiFi.
+        3. Re-enter the WiFi password shown on the sticker.
+    - title: "Call Subisu support"
+      body: |
+        1. Call **01-5970750** (Subisu customer care).
+        2. Give your account number and describe the modem light pattern.
+        3. Ask for a signal (RSL/SNR) check from their side.
+  troubleshooting:
+    - problem: "Internet stops after rain"
+      cause: "Water in cable line or connector"
+      fix: "Request technician visit; avoid DIY outdoor cable work"
+    - problem: "Modem overheats and drops"
+      cause: "Ventilation issue"
+      fix: "Place modem upright in open space, clean dust"
+    - problem: "Only some sites load"
+      cause: "DNS or routing issue"
+      fix: "Set DNS 1.1.1.1 and 8.8.8.8 in modem settings"
+  faq:
+    - q: "Does Subisu support WiFi 6 routers?"
+      a: "Yes, if your modem supports it or you use your own router in bridge mode."
+    - q: "How do I check Subisu outage in my area?"
+      a: "Call 01-5970750 or check their Facebook page; major outages are usually announced."
+    - q: "Can I change my Subisu WiFi password?"
+      a: "Yes, log in at 192.168.100.1 or 192.168.1.1 with the sticker credentials and change under Wireless settings."
+  affiliate: "darax|wifi-repeater"
+
+- id: nt-fiber-router-setup
+  niche: isp
+  title: "NT Fiber (Nepal Telecom) Router Setup — Step-by-Step Guide (2026)"
+  description: "Setup and fix Nepal Telecom NT Fiber: connect ONU, configure PPPoE username and password, enable WiFi, and fix IPTV not working issues."
+  keywords:
+    - "nt fiber setup"
+    - "nt fiber router configuration"
+    - "nepal telecom fiber pppoe"
+    - "nt fiber iptv not working"
+    - "एनटी फाइबर सेटअप"
+    - "nt fiber wifi password change"
+  tags: [nepal-telecom, ntc, fiber, pppoe, iptv]
+  sources:
+    - https://www.ntc.net.np/fiber
+    - https://www.ntc.net.np
+  summary:
+    - problem: "No internet after installation"
+      cause: "PPPoE credentials not entered"
+      fix: "Configure PPPoE with NT Fiber username and password"
+    - problem: "IPTV shows no signal"
+      cause: "ONT LAN port wrong or VLAN missing"
+      fix: "Connect IPTV box to the correct ONT port"
+    - problem: "WiFi password forgotten"
+      cause: "Default sticker credentials changed"
+      fix: "Reset ONT and reconfigure, or check admin page"
+  steps:
+    - title: "Connect the ONT correctly"
+      body: |
+        1. Green fiber cable goes into the PON port of the ONT.
+        2. Connect a LAN cable from ONT LAN1 to your router WAN port (if using your own router).
+        3. Power on the ONT and wait for PON light to be solid.
+    - title: "Configure PPPoE on the router"
+      body: |
+        1. Log in to the router admin page (`192.168.1.1`).
+        2. Go to Network > WAN and select PPPoE.
+        3. Enter the NT Fiber username and password you received at installation.
+        4. Save and reboot. Internet should connect within a minute.
+    - title: "Set up WiFi"
+      body: |
+        1. Go to Wireless Settings.
+        2. Set WiFi name (SSID) and a strong password.
+        3. Enable both 2.4 GHz and 5 GHz if supported.
+    - title: "Fix IPTV not working"
+      body: |
+        1. Connect the IPTV box to the ONT LAN2/LAN3 port (not through your router) if provided.
+        2. If using a router, enable IPTV/VLAN mode and set VLAN ID as given by NT (commonly 20 for IPTV).
+        3. Restart the IPTV box and check signal.
+    - title: "Change the NT Fiber WiFi password"
+      body: |
+        1. Log in at `192.168.1.1` (or the ONT sticker IP).
+        2. Go to WLAN settings, enter a new passphrase (min 8 characters).
+        3. Reconnect all devices with the new password.
+  troubleshooting:
+    - problem: "PON light blinking"
+      cause: "Registration issue with NT exchange"
+      fix: "Call 1415 or 199 (NTC customer care) with your service ID"
+    - problem: "Speed less than promised"
+      cause: "Fiber distance/splitter loss or old router"
+      fix: "Test with LAN cable; ask for ONT replacement if old model"
+    - problem: "Internet drops after rain"
+      cause: "Outdoor splice joint issue"
+      fix: "Log a complaint via NTC app or 1415"
+  faq:
+    - q: "How do I find my NT Fiber PPPoE username?"
+      a: "It is in the installation slip given by the technician, or call 1415 to retrieve it."
+    - q: "Does NT Fiber come with a free IPTV box?"
+      a: "Promotions change often; check ntc.net.np/fiber or ask the sales office."
+    - q: "Can I use my own router with NT Fiber?"
+      a: "Yes. Connect it to the ONT LAN1 and configure PPPoE using your NT credentials."
+  affiliate: "darax|router"

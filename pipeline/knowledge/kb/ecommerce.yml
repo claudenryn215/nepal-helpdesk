@@ -1,0 +1,221 @@
+# E-commerce knowledge base — Daraz seller guides and general tech.
+
+- id: daraz-seller-account-verification
+  niche: ecommerce
+  title: "Daraz Seller Account Verification Failing — Fixes (2026)"
+  description: "Your Daraz seller account verification is stuck or rejected? Fix document upload issues, bank account mismatches, and pass Daraz seller verification."
+  keywords:
+    - "daraz seller verification"
+    - "daraz seller account rejected"
+    - "daraz seller center login problem"
+    - "डराज सेलर"
+    - "daraz seller document upload"
+  tags: [daraz, seller, ecommerce, verification]
+  sources:
+    - https://seller.daraz.com.np
+    - https://www.daraz.com.np
+  summary:
+    - problem: "Verification rejected"
+      cause: "Blurry documents or name mismatch"
+      fix: "Re-upload clear scans matching your PAN/bank name"
+    - problem: "Bank details not accepted"
+      cause: "Account name mismatch"
+      fix: "Use the bank account in the exact business name"
+    - problem: "Seller Center login loop"
+      cause: "Session/cookie issue"
+      fix: "Clear cookies, try Chrome incognito, or reset password"
+  steps:
+    - title: "Register your seller account"
+      body: |
+        1. Go to seller.daraz.com.np and click 'Become a Seller'.
+        2. Register with your business email and phone.
+        3. Choose the correct account type: personal or company.
+    - title: "Prepare verification documents"
+      body: |
+        1. Citizenship/passport scan (front and back, clear).
+        2. PAN card or company registration certificate.
+        3. Bank account details — the account name must match the business name exactly.
+    - title: "Upload documents correctly"
+      body: |
+        1. Use clear, uncropped scans in the format Daraz asks for.
+        2. All text must be readable; no reflections or shadows.
+        3. Upload the same documents for seller verification as for payout verification.
+    - title: "Fix the most common rejection reasons"
+      body: |
+        1. Name mismatch: your bank and PAN must match the seller account name.
+        2. Blurry scan: re-photograph in daylight, flat surface.
+        3. Expired document: check the validity date before uploading.
+    - title: "Verify bank account for payouts"
+      body: |
+        1. Go to Seller Center > Finance > Bank Accounts.
+        2. Add the bank account and enter the exact account holder name.
+        3. If verification is done via micro-deposit, wait 1-2 working days and confirm the amount.
+    - title: "Get unstuck on login loops"
+      body: |
+        1. Clear browser cache and cookies.
+        2. Use the latest Chrome; disable extensions.
+        3. Reset the password via the 'Forgot' link, then log in fresh.
+  troubleshooting:
+    - problem: "Verification 'in review' for weeks"
+      cause: "Backlog or document issue"
+      fix: "Contact Daraz seller support from Seller Center with your application ID"
+    - problem: "Cannot change bank account after rejection"
+      cause: "Pending state"
+      fix: "Wait for the rejection reason, then edit — do not create duplicate accounts"
+    - problem: "Phone number not accepted"
+      cause: "Number used on another account"
+      fix: "Use a different number or recover the old account"
+  faq:
+    - q: "How long does Daraz seller verification take?"
+      a: "Usually a few working days after submission."
+    - q: "Can I sell on Daraz as an individual?"
+      a: "Yes, individuals can sell with citizenship and PAN."
+    - q: "When do Daraz payouts happen?"
+      a: "Payouts follow the settlement schedule in Seller Center — usually weekly after order completion."
+  affiliate: "none"
+
+- id: daraz-seller-listing-errors
+  niche: ecommerce
+  title: "Daraz Seller Listing Errors — Product Upload Fixes (2026)"
+  description: "Fix Daraz product listing errors: category mismatch, image size issues, price range errors, and listing under review problems in Seller Center."
+  keywords:
+    - "daraz product listing error"
+    - "daraz seller center upload problem"
+    - "daraz product not approved"
+    - "डराज उत्पादन लिस्टिङ"
+    - "daraz listing under review"
+  tags: [daraz, seller, listing, ecommerce]
+  sources:
+    - https://seller.daraz.com.np
+  summary:
+    - problem: "Category mismatch error"
+      cause: "Wrong category chosen"
+      fix: "Use the category tree exactly; check prohibited items"
+    - problem: "Image rejected"
+      cause: "Size or content violation"
+      fix: "Use 800x800+ JPEG, white background, no logos"
+    - problem: "Listing stuck 'under review'"
+      cause: "Backlog or content issue"
+      fix: "Wait 24-48h; check the rejection reason if returned"
+  steps:
+    - title: "Choose the right category"
+      body: |
+        1. Use the category search in Seller Center — choose the most specific node.
+        2. Wrong categories get auto-rejected; check the category requirements.
+        3. Prohibited or restricted categories (e.g., some electronics, health items) need approval.
+    - title: "Prepare images correctly"
+      body: |
+        1. Main image: at least 800x800 pixels, JPEG, white background.
+        2. No watermarks, text overlays, or logos on the main image.
+        3. Upload 3-5 angles; marketplace quality photos convert better.
+    - title: "Set correct price and stock"
+      body: |
+        1. Price must be within the category's allowed range.
+        2. Don't set prices above the maximum — use the price history tool if unsure.
+        3. Keep stock quantity accurate to avoid order cancellations.
+    - title: "Fill attributes completely"
+      body: |
+        1. Complete all required attributes (brand, model, color, size).
+        2. Incomplete attributes cause listing errors.
+        3. Use the 'Quick Setup' template if available for your category.
+    - title: "Handle 'under review' listings"
+      body: |
+        1. New listings are reviewed within 24–48 hours.
+        2. If returned, read the rejection reason under the product status.
+        3. Fix the exact reason and resubmit — do not edit randomly.
+    - title: "Bulk upload errors"
+      body: |
+        1. Download the current template for your category.
+        2. Fill it exactly; keep SKU names unique.
+        3. Upload and check the error report — it lists each failing row.
+  troubleshooting:
+    - problem: "SKU duplicated error"
+      cause: "Same SKU used twice"
+      fix: "Make every SKU unique; re-upload"
+    - problem: "VAT/tax field error"
+      cause: "Missing tax info"
+      fix: "Fill VAT number or tax code in Seller Profile > Tax"
+    - problem: "Listing not searchable"
+      cause: "Missing keywords"
+      fix: "Add search terms in the listing title and description"
+  faq:
+    - q: "Why is my Daraz listing not approved?"
+      a: "Mostly category mismatch, image violations, or missing attributes — check the reason in Seller Center."
+    - q: "Can I edit a live listing?"
+      a: "Yes, edits go back through review, so batch changes carefully."
+    - q: "How many images does Daraz require?"
+      a: "At least one 800x800+ main image; 3+ images are recommended."
+  affiliate: "none"
+
+- id: phone-not-charging-quick-fix
+  niche: general
+  title: "Phone Not Charging — Quick Fixes Before You Visit a Repair Shop (2026)"
+  description: "Phone not charging? Try these safe fixes first: clean the port, check the cable, force restart, and test with a different charger before paying for repairs."
+  keywords:
+    - "phone not charging"
+    - "android not charging fix"
+    - "charging port cleaning"
+    - "फोन चार्ज नहुने"
+    - "iphone not charging"
+  tags: [phone, battery, charging, general]
+  sources:
+    - https://support.google.com/pixelphone/answer/6263156
+  summary:
+    - problem: "Phone doesn't charge at all"
+      cause: "Dust in port, bad cable, or software freeze"
+      fix: "Clean port gently, test another cable, force restart"
+    - problem: "Charges very slowly"
+      cause: "Weak charger or background apps"
+      fix: "Use the original charger, enable airplane mode while charging"
+    - problem: "Charges only when off"
+      cause: "Battery calibration or hardware issue"
+      fix: "Calibrate battery; if persists, visit a service center"
+  steps:
+    - title: "Check the cable and adapter first"
+      body: |
+        1. Try another cable and adapter — most 'charging problems' are cable problems.
+        2. Check for bent pins, frayed ends, or a burnt smell.
+        3. Use the original or a quality branded charger (fast charging needs compatible wattage).
+    - title: "Clean the charging port"
+      body: |
+        1. Power off the phone.
+        2. Use a wooden toothpick or plastic pick to gently lift lint and dust.
+        3. Never use metal pins or blow hard into the port — it can damage contacts.
+    - title: "Force restart the phone"
+      body: |
+        1. Android: hold power button 10-20 seconds until it restarts.
+        2. iPhone: press and release volume up, then volume down, hold side button.
+        3. Plug in after restart and check the battery icon.
+    - title: "Test charging in safe mode"
+      body: |
+        1. Android: hold power, tap-and-hold 'Power off' and confirm Safe Mode.
+        2. If it charges in safe mode, an app is draining the battery fast.
+        3. Uninstall recently added apps and reboot normally.
+    - title: "Calibrate the battery"
+      body: |
+        1. Drain the phone until it switches off by itself.
+        2. Charge to 100% without interruption.
+        3. Repeat once; this fixes wrong battery percentages, not hardware faults.
+    - title: "When to see a repair shop"
+      body: |
+        1. If none of the above works, the charging port, battery, or charging IC may need service.
+        2. Get a quote from at least two shops (New Road, Kathmandu, has many options).
+        3. Ask for genuine battery replacement with warranty.
+  troubleshooting:
+    - problem: "Charging port smells burnt"
+      cause: "Short circuit or moisture"
+      fix: "Stop charging immediately; visit a repair shop"
+    - problem: "Charges then stops"
+      cause: "Faulty cable or loose port"
+      fix: "Replace cable; check port connection tightness"
+    - problem: "Battery drains fast after update"
+      cause: "Post-update indexing"
+      fix: "Wait 2-3 days; if still bad, clear app caches"
+  faq:
+    - q: "Is it safe to charge my phone overnight?"
+      a: "Modern phones manage charging; overnight charging is generally safe but may wear the battery faster."
+    - q: "Why does my phone charge only when switched off?"
+      a: "Often a software or battery calibration issue; try the steps above before hardware repairs."
+    - q: "How much does phone battery replacement cost in Nepal?"
+      a: "It varies by model and shop; compare quotes from at least two service centers."
+  affiliate: "darax|phone-charger"
