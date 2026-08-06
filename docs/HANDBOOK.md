@@ -192,7 +192,7 @@ npx wrangler d1 execute nepal-helpdesk-db --remote \
 ### 8.3 Content policy (keep the site looking human)
 - Site copy must never mention automation, bots, AI, scraping, or a
   "publishing cycle". It reads as a small editorial team.
-- Articles carry rotating bylines (`AUTHORS` in `site/src/config.ts`),
-  "Last checked" dates, and a "Checked" badge on cards.
+- Articles show "Updated" and "Last checked" dates, and a "Checked" badge
+  on cards. No writer names are shown.
 - Views/comment counts are real numbers from D1 — don't fake them in
   content.

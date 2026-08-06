@@ -45,20 +45,3 @@ export const categoryLabel = (slug: string): string => {
   const found = CATEGORIES.find((c) => c.slug === slug);
   return found ? found.label : 'Guides';
 };
-
-export const AUTHORS = [
-  'Rohan Shrestha',
-  'Anisha Gurung',
-  'Sagar Thapa',
-  'Pratiksha Karki',
-  'Bibek Adhikari',
-  'Sneha Maharjan',
-];
-
-export const authorFor = (slug: string): string => {
-  let hash = 0;
-  for (let i = 0; i < slug.length; i++) {
-    hash = (hash * 31 + slug.charCodeAt(i)) >>> 0;
-  }
-  return AUTHORS[hash % AUTHORS.length];
-};
