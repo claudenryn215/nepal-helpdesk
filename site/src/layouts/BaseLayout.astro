@@ -45,5 +45,28 @@ const {
       <slot />
     </main>
     <Footer />
+    <script>
+      const spans = Array.from(document.querySelectorAll<HTMLElement>('[data-comment-count]'));
+      if (spans.length > 0) {
+        const byCard = new Map<HTMLElement, string>();
+        for (const el of spans) {
+          const card = el.closest<HTMLElement>('[data-post-id]');
+          if (card?.dataset.postId) byCard.set(el, card.dataset.postId);
+        }
+        if (byCard.size > 0) {
+          const ids = [...new Set(byCard.values())].slice(0, 60);
+          fetch(`/api/comments/counts?ids=${encodeURIComponent(ids.join(','))}`)
+            .then((res) => (res.ok ? res.json() : null))
+            .then((data: { counts?: Record<string, number> } | null) => {
+              if (!data?.counts) return;
+              for (const [el, id] of byCard) {
+                const n = data.counts[id] ?? 0;
+                if (n > 0) el.textContent = `${n} comment${n === 1 ? '' : 's'}`;
+              }
+            })
+            .catch(() => {});
+        }
+      }
+    </script>
   </body>
 </html>

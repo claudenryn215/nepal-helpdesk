@@ -23,6 +23,8 @@ pipeline/state/verified.json
 pipeline/state/drafts.json
 pipeline/state/*.json
 pipeline/state/*.jsonl
+!pipeline/state/seeded.json
+!pipeline/state/seed_comments.sql
 !pipeline/state/.gitkeep
 
 # OS

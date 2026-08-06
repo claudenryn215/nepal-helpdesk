@@ -1,0 +1,54 @@
+---
+interface Props {
+  postId: string;
+  title: string;
+}
+
+const { postId, title } = Astro.props;
+const url = `${Astro.site ?? 'https://nepalhelpdesk.pages.dev'}/articles/${postId}/`;
+const shareText = `${title} — read this`;
+---
+
+<div class="share-row">
+  <span class="share-label">Share</span>
+  <a
+    class="share-btn"
+    href={`https://wa.me/?text=${encodeURIComponent(`${shareText} ${url}`)}`}
+    target="_blank"
+    rel="noopener"
+    data-share="whatsapp"
+    >WhatsApp</a
+  >
+  <a
+    class="share-btn"
+    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`}
+    target="_blank"
+    rel="noopener"
+    data-share="facebook"
+    >Facebook</a
+  >
+  <button class="share-btn" type="button" data-share="copy" data-url={url}>Copy link</button>
+</div>
+
+<script>
+  document.addEventListener('click', (e: MouseEvent) => {
+    const target = e.target as HTMLElement | null;
+    const btn = target?.closest<HTMLElement>('[data-share]');
+    if (!btn) return;
+    if (btn.dataset.share !== 'copy') return;
+    e.preventDefault();
+    const url = btn.dataset.url ?? '';
+    const done = () => {
+      const original = btn.textContent ?? '';
+      btn.textContent = 'Link copied';
+      window.setTimeout(() => {
+        btn.textContent = original;
+      }, 2000);
+    };
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(url).then(done).catch(done);
+    } else {
+      done();
+    }
+  });
+</script>

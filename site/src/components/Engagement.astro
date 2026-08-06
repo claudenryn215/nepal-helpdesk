@@ -1,0 +1,133 @@
+---
+import ShareButtons from './ShareButtons.astro';
+
+interface Props {
+  postId: string;
+  title: string;
+}
+
+const { postId, title } = Astro.props;
+---
+
+<section class="engage" data-post-id={postId}>
+  <ShareButtons postId={postId} title={title} />
+
+  <h2 class="engage-title">
+    Comments <span class="ccount" data-comment-count></span>
+  </h2>
+
+  <ul class="comment-list" data-comments aria-live="polite"></ul>
+  <p class="empty-comments" data-empty hidden>
+    No comments yet. Did this fix work for you? Share your experience — someone else in Nepal is
+    probably stuck on the same problem.
+  </p>
+
+  <form class="comment-form" data-comment-form novalidate>
+    <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <input name="name" type="text" maxlength="40" placeholder="Your name" required />
+    <textarea name="body" rows="3" maxlength="800" placeholder="Did this work for you? Add what you tried…" required></textarea>
+    <button class="btn" type="submit">Post comment</button>
+    <p class="form-msg" data-form-msg></p>
+  </form>
+</section>
+
+<script>
+  const section = document.querySelector<HTMLElement>('[data-post-id]');
+  if (section) {
+    const postId = section.dataset.postId ?? '';
+    const list = section.querySelector<HTMLElement>('[data-comments]');
+    const empty = section.querySelector<HTMLElement>('[data-empty]');
+    const countEl = section.querySelector<HTMLElement>('[data-comment-count]');
+    const form = section.querySelector<HTMLFormElement>('[data-comment-form]');
+    const msg = section.querySelector<HTMLElement>('[data-form-msg]');
+
+    const escapeHtml = (s: string): string =>
+      s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+    const timeAgo = (iso: string): string => {
+      const diff = Math.max(0, Date.now() - new Date(iso).getTime());
+      const mins = Math.floor(diff / 60000);
+      if (mins < 60) return mins < 1 ? 'just now' : `${mins}m ago`;
+      const hours = Math.floor(mins / 60);
+      if (hours < 24) return `${hours}h ago`;
+      const days = Math.floor(hours / 24);
+      if (days < 30) return `${days}d ago`;
+      const months = Math.floor(days / 30);
+      if (months < 12) return `${months}mo ago`;
+      return `${Math.floor(months / 12)}y ago`;
+    };
+
+    const initials = (name: string): string =>
+      name
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((w) => w[0]!.toUpperCase())
+        .join('');
+
+    const setCount = (n: number): void => {
+      if (!countEl) return;
+      countEl.textContent = n > 0 ? `(${n})` : '';
+    };
+
+    const load = async (): Promise<void> => {
+      try {
+        const res = await fetch(`/api/comments/${encodeURIComponent(postId)}`);
+        if (!res.ok) return;
+        const data = (await res.json()) as { comments: { id: number; name: string; body: string; created_at: string }[] };
+        const comments = data.comments ?? [];
+        setCount(comments.length);
+        if (list) list.innerHTML = comments
+          .map(
+            (c) => `
+              <li class="comment">
+                <span class="avatar">${escapeHtml(initials(c.name))}</span>
+                <div class="comment-body">
+                  <div class="comment-head">
+                    <strong>${escapeHtml(c.name)}</strong>
+                    <time>${timeAgo(c.created_at)}</time>
+                  </div>
+                  <p>${escapeHtml(c.body)}</p>
+                </div>
+              </li>`,
+          )
+          .join('');
+        if (empty) empty.hidden = comments.length > 0;
+      } catch {
+        /* API unreachable — leave section untouched */
+      }
+    };
+
+    form?.addEventListener('submit', async (e: SubmitEvent) => {
+      e.preventDefault();
+      if (!msg) return;
+      msg.textContent = '';
+      const formData = new FormData(form);
+      const website = String(formData.get('website') ?? '');
+      if (website !== '') return;
+      const name = String(formData.get('name') ?? '').trim();
+      const body = String(formData.get('body') ?? '').trim();
+      if (name.length < 2 || body.length < 2) {
+        msg.textContent = 'Please add your name and a comment.';
+        return;
+      }
+      try {
+        const res = await fetch(`/api/comments/${encodeURIComponent(postId)}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, body, website }),
+        });
+        if (!res.ok) {
+          msg.textContent = 'Something went wrong. Please try again.';
+          return;
+        }
+        msg.textContent = 'Thanks! Your comment is waiting for approval and will appear shortly.';
+        form.reset();
+      } catch {
+        msg.textContent = 'Something went wrong. Please try again.';
+      }
+    });
+
+    void load();
+  }
+</script>

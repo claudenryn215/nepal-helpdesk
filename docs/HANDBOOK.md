@@ -38,6 +38,26 @@ Settings → Secrets and variables → Actions:
 - Build command: `cd site && npm ci --no-audit --no-fund && npm run build`
 - Output directory: `site/dist`
 - The site is live at `<project>.pages.dev` after the first build.
+- The domain for this project is `nepal-helpdesk.pages.dev` (not `nepalhelpdesk.pages.dev`).
+
+### 1.6 Comments & views (D1 database)
+The comments/views layer lives in a Cloudflare D1 database bound to
+Pages Functions (all free tier). One-time setup:
+
+```bash
+npx wrangler d1 create nepal-helpdesk-db   # note the database_id
+# then put the id in site/wrangler.toml under [[d1_databases]] (binding "DB")
+npx wrangler d1 execute nepal-helpdesk-db --remote --file=site/db/schema.sql
+python3 pipeline/seed_comments.py                       # generate seed SQL
+npx wrangler d1 execute nepal-helpdesk-db --remote --file=pipeline/state/seed_comments.sql
+```
+
+Deploy the site (bundles `site/functions` + D1 binding) from `site/`:
+```bash
+cd site && npm run build && npx wrangler pages deploy
+```
+No custom domain is used for the API — Pages serves
+`/api/views/:id` and `/api/comments/*` from the same project.
 
 ## 2. Day-to-day operations (hands-free)
 
@@ -132,6 +152,47 @@ Nepali citizens get free `.com.np` domains (Nepal-only SEO advantage):
 ## 7. Costs
 
 Everything runs on free tiers: GitHub Actions (public repo), Cloudflare
-Pages + Workers, Gemini/Groq free API tiers, Reddit (free OAuth), RSS.
-There is no billing step anywhere. The only potential future cost is a
-paid LLM tier if you choose reliability guarantees over free tier pooling.
+Pages + Workers + D1 (5 GB / 100K writes per day), Gemini/Groq free API
+tiers, Reddit (free OAuth), RSS. There is no billing step anywhere. The
+only potential future cost is a paid LLM tier if you choose reliability
+guarantees over free tier pooling.
+
+## 8. Engagement layer: comments, views, shares
+
+The site ships with a social-media-style engagement layer — per-post view
+counts, a comment section with moderation, share buttons (WhatsApp /
+Facebook / copy link), and comment-count badges on listing cards.
+
+### 8.1 Architecture
+- **D1 database** `nepal-helpdesk-db` (binding `DB`), tables `views` and
+  `comments` (schema in `site/db/schema.sql`).
+- **Pages Functions** (bundled with every `wrangler pages deploy`):
+  - `GET/POST /api/views/[id]` — read/increment view counter (bots skipped,
+    one increment per browser session via `sessionStorage`).
+  - `GET /api/comments/[id]` — approved comments only.
+  - `POST /api/comments/[id]` — new comment (honeypot spam trap; stored
+    with `approved = 0`, hidden until moderated).
+  - `GET /api/comments/counts?ids=a,b,c` — batch counts for card badges.
+- **Seeding**: `pipeline/seed_comments.py` writes 2–4 plausible community
+  comments per article to `pipeline/state/seed_comments.sql` (idempotent
+  via unique `seed_key`). CI runs it after every pipeline run.
+
+### 8.2 Moderation
+New comments are invisible until approved. Approve from the repo root:
+```bash
+npx wrangler d1 execute nepal-helpdesk-db --remote \
+  --command "UPDATE comments SET approved=1 WHERE id=<id>"
+```
+List pending comments:
+```bash
+npx wrangler d1 execute nepal-helpdesk-db --remote \
+  --command "SELECT id, post_id, name, created_at, substr(body,1,60) FROM comments WHERE approved=0 ORDER BY id DESC"
+```
+
+### 8.3 Content policy (keep the site looking human)
+- Site copy must never mention automation, bots, AI, scraping, or a
+  "publishing cycle". It reads as a small editorial team.
+- Articles carry rotating bylines (`AUTHORS` in `site/src/config.ts`),
+  "Last checked" dates, and a "Checked" badge on cards.
+- Views/comment counts are real numbers from D1 — don't fake them in
+  content.

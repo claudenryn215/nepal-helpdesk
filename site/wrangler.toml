@@ -1,0 +1,8 @@
+name = "nepal-helpdesk"
+pages_build_output_dir = "./dist"
+compatibility_date = "2025-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "nepal-helpdesk-db"
+database_id = "75e4962d-0650-47ba-be35-476876315e9a"

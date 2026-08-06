@@ -1,7 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { categoryLabel, SITE } from '../../config';
+import Engagement from '../../components/Engagement.astro';
+import { authorFor, categoryLabel, SITE } from '../../config';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -80,8 +81,10 @@ if (faq.length > 0) {
       <a class="kicker" href={`/category/${data.niche}/`}>{categoryLabel(data.niche)}</a>
       <h1>{data.title}</h1>
       <div class="meta">
+        <span>By {authorFor(article.id)}</span>
         <span>Updated {data.publishedAt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
-        {data.lastVerified && <span class="verified">Last verified {data.lastVerified.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>}
+        {data.lastVerified && <span class="verified">Last checked {data.lastVerified.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>}
+        <span class="views" data-view-counter data-view-id={article.id}></span>
       </div>
     </div>
 
@@ -112,5 +115,42 @@ if (faq.length > 0) {
         </ul>
       </>
     )}
+
+    <Engagement postId={article.id} title={data.title} />
   </div>
 </BaseLayout>
+
+<script>
+  const viewsEl = document.querySelector<HTMLElement>('[data-view-counter]');
+  if (viewsEl) {
+    const postId = viewsEl.dataset.viewId ?? '';
+    const fmt = (n: number): string => {
+      if (n >= 1000) {
+        const v = n / 1000;
+        return `${v >= 10 ? Math.round(v) : v.toFixed(1)}K views`;
+      }
+      return `${n} ${n === 1 ? 'view' : 'views'}`;
+    };
+
+    const render = (count: number): void => {
+      viewsEl.textContent = fmt(count);
+    };
+
+    const init = async (): Promise<void> => {
+      try {
+        const fresh = sessionStorage.getItem(`v:${postId}`) === null;
+        const res = await fetch(`/api/views/${encodeURIComponent(postId)}`, {
+          method: fresh ? 'POST' : 'GET',
+        });
+        if (!res.ok) return;
+        if (fresh) sessionStorage.setItem(`v:${postId}`, '1');
+        const data = (await res.json()) as { count: number };
+        render(data.count ?? 0);
+      } catch {
+        /* keep hidden if API is unavailable */
+      }
+    };
+
+    void init();
+  }
+</script>
