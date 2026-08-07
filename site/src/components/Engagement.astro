@@ -22,7 +22,7 @@ const { postId, title } = Astro.props;
     probably stuck on the same problem.
   </p>
 
-  <form class="comment-form" data-comment-form novalidate>
+  <form class="comment-form top-form" data-comment-form novalidate>
     <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
     <input name="name" type="text" maxlength="40" placeholder="Your name" required />
     <textarea name="body" rows="3" maxlength="800" placeholder="Did this work for you? Add what you tried…" required></textarea>
@@ -40,6 +40,22 @@ const { postId, title } = Astro.props;
     const countEl = section.querySelector<HTMLElement>('[data-comment-count]');
     const form = section.querySelector<HTMLFormElement>('[data-comment-form]');
     const msg = section.querySelector<HTMLElement>('[data-form-msg]');
+
+    const MAX_VISUAL_DEPTH = 6;
+    const MAX_REPLY_DEPTH = 3;
+
+    type Comment = {
+      id: number;
+      parent_id: number | null;
+      name: string;
+      body: string;
+      created_at: string;
+      upvotes: number;
+      downvotes: number;
+    };
+
+    let comments: Comment[] = [];
+    const myVotes = new Map<number, number>();
 
     const escapeHtml = (s: string): string =>
       s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -65,34 +81,194 @@ const { postId, title } = Astro.props;
         .map((w) => w[0]!.toUpperCase())
         .join('');
 
+    const score = (c: Comment): number => c.upvotes - c.downvotes;
+
     const setCount = (n: number): void => {
       if (!countEl) return;
       countEl.textContent = n > 0 ? `(${n})` : '';
+    };
+
+    const childrenOf = (parentId: number | null): Comment[] =>
+      comments
+        .filter((c) => (c.parent_id ?? null) === parentId)
+        .sort((a, b) => score(b) - score(a) || a.created_at.localeCompare(b.created_at));
+
+    const render = (): void => {
+      if (!list) return;
+      setCount(comments.length);
+      if (empty) empty.hidden = comments.length > 0;
+
+      const renderComment = (c: Comment, depth: number): string => {
+        const children = childrenOf(c.id);
+        const myVote = myVotes.get(c.id) ?? 0;
+        const showReply = depth < MAX_REPLY_DEPTH;
+        const clampDepth = depth >= MAX_VISUAL_DEPTH;
+        return `
+          <li class="comment" data-cid="${c.id}" data-depth="${Math.min(depth, MAX_VISUAL_DEPTH)}">
+            <div class="vote-col" data-vote-col>
+              <button class="vote ${myVote === 1 ? 'active-up' : ''}" type="button" data-vote="1" aria-label="Upvote">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 4l8 8h-5v8h-6v-8H4z"/></svg>
+              </button>
+              <span class="score" data-score>${score(c)}</span>
+              <button class="vote ${myVote === -1 ? 'active-down' : ''}" type="button" data-vote="-1" aria-label="Downvote">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 20l-8-8h5V4h6v8h5z"/></svg>
+              </button>
+            </div>
+            <div class="comment-main">
+              <div class="comment-head">
+                <span class="avatar">${escapeHtml(initials(c.name))}</span>
+                <strong>${escapeHtml(c.name)}</strong>
+                <time>${timeAgo(c.created_at)}</time>
+              </div>
+              <p class="comment-text">${escapeHtml(c.body)}</p>
+              <div class="comment-actions">
+                ${showReply ? `<button class="reply-btn" type="button" data-reply>Reply</button>` : ''}
+              </div>
+              <form class="comment-form reply-form" data-reply-form hidden novalidate>
+                <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                <input name="name" type="text" maxlength="40" placeholder="Your name" required />
+                <textarea name="body" rows="2" maxlength="800" placeholder="Write a reply…" required></textarea>
+                <div class="reply-actions">
+                  <button class="btn" type="submit">Reply</button>
+                  <button class="cancel-btn" type="button" data-reply-cancel>Cancel</button>
+                </div>
+                <p class="form-msg" data-form-msg></p>
+              </form>
+              ${children.length > 0 && !clampDepth
+                ? `<ul class="children">${children.map((child) => renderComment(child, depth + 1)).join('')}</ul>`
+                : children.length > 0
+                  ? `<ul class="children">${children
+                      .slice(0, 3)
+                      .map((child) => renderComment(child, depth + 1))
+                      .join('')}</ul>`
+                  : ''}
+            </div>
+          </li>`;
+      };
+
+      const topLevel = childrenOf(null);
+      list.innerHTML = topLevel.map((c) => renderComment(c, 0)).join('');
+      bindEvents();
+    };
+
+    const bindEvents = (): void => {
+      list?.querySelectorAll<HTMLElement>('[data-reply]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const li = btn.closest<HTMLElement>('.comment');
+          const rForm = li?.querySelector<HTMLFormElement>('[data-reply-form]');
+          if (!rForm) return;
+          rForm.hidden = !rForm.hidden;
+          if (!rForm.hidden) rForm.querySelector<HTMLInputElement>('input[name="name"]')?.focus();
+        });
+      });
+
+      list?.querySelectorAll<HTMLElement>('[data-reply-cancel]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const rForm = btn.closest<HTMLFormElement>('[data-reply-form]');
+          if (rForm) rForm.hidden = true;
+        });
+      });
+
+      list?.querySelectorAll<HTMLElement>('[data-vote]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const li = btn.closest<HTMLElement>('.comment');
+          if (!li) return;
+          const cid = Number(li.dataset.cid);
+          const dir = Number(btn.dataset.vote);
+          void vote(cid, dir, li);
+        });
+      });
+
+      list?.querySelectorAll<HTMLFormElement>('[data-reply-form]').forEach((rForm) => {
+        rForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          void submitReply(rForm);
+        });
+      });
+    };
+
+    const vote = async (cid: number, dir: number, li: HTMLElement): Promise<void> => {
+      const current = myVotes.get(cid) ?? 0;
+      const next = current === dir ? 0 : dir;
+      const scoreEl = li.querySelector<HTMLElement>('[data-score]');
+      const upBtn = li.querySelector<HTMLElement>('[data-vote="1"]');
+      const downBtn = li.querySelector<HTMLElement>('[data-vote="-1"]');
+
+      const apply = (my: number, newScore: number): void => {
+        myVotes.set(cid, my);
+        if (scoreEl) scoreEl.textContent = String(newScore);
+        upBtn?.classList.toggle('active-up', my === 1);
+        downBtn?.classList.toggle('active-down', my === -1);
+      };
+
+      const before = scoreEl ? Number(scoreEl.textContent) : 0;
+      apply(next, before + (next - current));
+      try {
+        const res = await fetch(`/api/comments/${cid}/vote`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ direction: next }),
+        });
+        if (!res.ok) throw new Error('vote failed');
+        const data = (await res.json()) as { upvotes: number; downvotes: number };
+        apply(data.myVote as number, data.upvotes - data.downvotes);
+      } catch {
+        apply(current, before);
+      }
+    };
+
+    const postComment = async (
+      cid: number | null,
+      name: string,
+      body: string,
+      website: string,
+    ): Promise<void> => {
+      const payload: Record<string, unknown> = { name, body, website };
+      if (cid !== null) payload.parent_id = cid;
+      const res = await fetch(`/api/comments/${encodeURIComponent(postId)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('post failed');
+    };
+
+    const submitReply = async (rForm: HTMLFormElement): Promise<void> => {
+      const li = rForm.closest<HTMLElement>('.comment');
+      const msgEl = rForm.querySelector<HTMLElement>('[data-form-msg]');
+      if (!msgEl) return;
+      msgEl.textContent = '';
+      const cid = Number(li?.dataset.cid);
+      const formData = new FormData(rForm);
+      if (String(formData.get('website') ?? '') !== '') return;
+      const name = String(formData.get('name') ?? '').trim();
+      const body = String(formData.get('body') ?? '').trim();
+      if (name.length < 2 || body.length < 2) {
+        msgEl.textContent = 'Please add your name and a reply.';
+        return;
+      }
+      try {
+        await postComment(cid, name, body, '');
+        rForm.hidden = true;
+        rForm.reset();
+        msgEl.textContent = 'Thanks! Your reply is waiting for approval.';
+        msgEl.classList.add('ok');
+        window.setTimeout(() => {
+          msgEl.textContent = '';
+          msgEl.classList.remove('ok');
+        }, 6000);
+      } catch {
+        msgEl.textContent = 'Something went wrong. Please try again.';
+      }
     };
 
     const load = async (): Promise<void> => {
       try {
         const res = await fetch(`/api/comments/${encodeURIComponent(postId)}`);
         if (!res.ok) return;
-        const data = (await res.json()) as { comments: { id: number; name: string; body: string; created_at: string }[] };
-        const comments = data.comments ?? [];
-        setCount(comments.length);
-        if (list) list.innerHTML = comments
-          .map(
-            (c) => `
-              <li class="comment">
-                <span class="avatar">${escapeHtml(initials(c.name))}</span>
-                <div class="comment-body">
-                  <div class="comment-head">
-                    <strong>${escapeHtml(c.name)}</strong>
-                    <time>${timeAgo(c.created_at)}</time>
-                  </div>
-                  <p>${escapeHtml(c.body)}</p>
-                </div>
-              </li>`,
-          )
-          .join('');
-        if (empty) empty.hidden = comments.length > 0;
+        const data = (await res.json()) as { comments: Comment[] };
+        comments = data.comments ?? [];
+        render();
       } catch {
         /* API unreachable — leave section untouched */
       }
@@ -103,8 +279,7 @@ const { postId, title } = Astro.props;
       if (!msg) return;
       msg.textContent = '';
       const formData = new FormData(form);
-      const website = String(formData.get('website') ?? '');
-      if (website !== '') return;
+      if (String(formData.get('website') ?? '') !== '') return;
       const name = String(formData.get('name') ?? '').trim();
       const body = String(formData.get('body') ?? '').trim();
       if (name.length < 2 || body.length < 2) {
@@ -112,15 +287,7 @@ const { postId, title } = Astro.props;
         return;
       }
       try {
-        const res = await fetch(`/api/comments/${encodeURIComponent(postId)}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, body, website }),
-        });
-        if (!res.ok) {
-          msg.textContent = 'Something went wrong. Please try again.';
-          return;
-        }
+        await postComment(null, name, body, '');
         msg.textContent = 'Thanks! Your comment is waiting for approval and will appear shortly.';
         form.reset();
       } catch {

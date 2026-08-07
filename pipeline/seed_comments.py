@@ -1,7 +1,8 @@
-"""Generate idempotent seed comments for published articles (D1 seed SQL)."""
+"""Generate idempotent seed comments (with replies and upvotes) for published articles."""
 from __future__ import annotations
 
 import hashlib
+from datetime import datetime, timezone
 
 from common import STATE_DIR, log, now_ts, read_json, write_json
 
@@ -79,6 +80,16 @@ GENERIC_POOL = [
     "Worked for me. Took a couple of tries but the guide was right.",
 ]
 
+REPLY_POOL = [
+    "Same here, this worked for me too.",
+    "Good to know, was stuck on this for days.",
+    "Exactly my experience. Thanks for confirming.",
+    "Did you need to restart the router after this?",
+    "Tried it just now, worked on the first try.",
+    "Thanks! Just saved me a trip to the support office.",
+    "Worked for my connection as well. Cheers!",
+]
+
 ALL_POOL = NICHE_POOL["general"] + GENERIC_POOL
 
 
@@ -87,14 +98,20 @@ def _pick(pool: list[str], key: str) -> str:
     return pool[idx]
 
 
+def _hash(key: str) -> int:
+    return int(hashlib.md5(key.encode()).hexdigest(), 16)
+
+
 def _sql_literal(value: str) -> str:
     return "'" + value.replace("'", "''") + "'"
 
 
 def _iso(ts: float) -> str:
-    return __import__("datetime").datetime.fromtimestamp(ts, __import__("datetime").timezone.utc).strftime(
-        "%Y-%m-%dT%H:%M:%S.000Z"
-    )
+    return datetime.fromtimestamp(ts, timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+
+
+def _voter_key(slug: str, i: int, k: int) -> str:
+    return f"seed-{slug}-{i}-{k}"[:40]
 
 
 def main() -> None:
@@ -120,20 +137,51 @@ def main() -> None:
             continue
 
         pool = NICHE_POOL.get(niche) or NICHE_POOL["general"]
-        count = MIN_PER_POST + (int(hashlib.md5(slug.encode()).hexdigest(), 16) % (MAX_PER_POST - MIN_PER_POST + 1))
+        count = MIN_PER_POST + (_hash(slug) % (MAX_PER_POST - MIN_PER_POST + 1))
 
+        base_times: list[float] = []
         for i in range(count):
+            span = max(pub_ts, now - 90 * 86400)
+            ts = min(span + (now - span) * (0.25 + 0.2 * i), now - 600)
+            base_times.append(ts)
             name = _pick(NAMES, f"{slug}-{i}-name")
             body = _pick(pool + ALL_POOL, f"{slug}-{i}-body")
-            span = max(pub_ts, now - 90 * 86400)
-            ts = span + (now - span) * (0.25 + 0.25 * i)
-            ts = min(ts, now - 600)
             seed_key = f"{slug}-seed-{i}"
+            upvotes = _hash(f"{slug}-{i}-up") % 5
             rows.append(
-                "INSERT OR IGNORE INTO comments (post_id, name, body, approved, seed_key, created_at) "
+                "INSERT OR IGNORE INTO comments (post_id, name, body, approved, seed_key, upvotes, created_at) "
                 f"VALUES ({_sql_literal(slug)}, {_sql_literal(name)}, {_sql_literal(body)}, 1, "
-                f"{_sql_literal(seed_key)}, {_sql_literal(_iso(ts))});"
+                f"{_sql_literal(seed_key)}, {upvotes}, {_sql_literal(_iso(ts))});"
             )
+            if upvotes > 0:
+                rows.append(
+                    f"UPDATE comments SET upvotes = {upvotes} WHERE seed_key = {_sql_literal(seed_key)};"
+                )
+                for k in range(upvotes):
+                    rows.append(
+                        "INSERT OR IGNORE INTO comment_votes (comment_id, voter, direction) VALUES "
+                        f"((SELECT id FROM comments WHERE seed_key = {_sql_literal(seed_key)}), "
+                        f"{_sql_literal(_voter_key(slug, i, k))}, 1);"
+                    )
+
+        reply_count = 0
+        if count >= 3:
+            reply_count = 1
+            if count == 4 and _hash(f"{slug}-extra-reply") % 2 == 0:
+                reply_count = 2
+        for j in range(reply_count):
+            parent_idx = _hash(f"{slug}-reply-{j}") % count
+            parent_key = f"{slug}-seed-{parent_idx}"
+            ts = min(base_times[parent_idx] + (now - base_times[parent_idx]) * 0.3, now - 300)
+            name = _pick(NAMES, f"{slug}-reply-{j}-name")
+            body = _pick(REPLY_POOL, f"{slug}-reply-{j}-body")
+            seed_key = f"{slug}-seed-{parent_idx}-reply-{j}"
+            rows.append(
+                "INSERT OR IGNORE INTO comments (post_id, parent_id, name, body, approved, seed_key, created_at) "
+                f"VALUES ({_sql_literal(slug)}, (SELECT id FROM comments WHERE seed_key = {_sql_literal(parent_key)}), "
+                f"{_sql_literal(name)}, {_sql_literal(body)}, 1, {_sql_literal(seed_key)}, {_sql_literal(_iso(ts))});"
+            )
+
         seeded.append(slug)
 
     if not rows:
@@ -142,7 +190,7 @@ def main() -> None:
 
     SEED_SQL_PATH.write_text("\n".join(rows) + "\n", encoding="utf-8")
     write_json(SEEDED_PATH, seeded)
-    log(f"generated {len(rows)} seed comments -> {SEED_SQL_PATH}")
+    log(f"generated {len(rows)} seed statements -> {SEED_SQL_PATH}")
 
 
 if __name__ == "__main__":

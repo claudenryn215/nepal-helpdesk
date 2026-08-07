@@ -164,18 +164,28 @@ counts, a comment section with moderation, share buttons (WhatsApp /
 Facebook / copy link), and comment-count badges on listing cards.
 
 ### 8.1 Architecture
-- **D1 database** `nepal-helpdesk-db` (binding `DB`), tables `views` and
-  `comments` (schema in `site/db/schema.sql`).
+- **D1 database** `nepal-helpdesk-db` (binding `DB`), tables `views`,
+  `comments` (with `parent_id`, `upvotes`, `downvotes`) and `comment_votes`
+  (schema in `site/db/schema.sql`).
 - **Pages Functions** (bundled with every `wrangler pages deploy`):
   - `GET/POST /api/views/[id]` — read/increment view counter (bots skipped,
     one increment per browser session via `sessionStorage`).
-  - `GET /api/comments/[id]` — approved comments only.
-  - `POST /api/comments/[id]` — new comment (honeypot spam trap; stored
-    with `approved = 0`, hidden until moderated).
+  - `GET /api/comments/[id]` — approved comments only, flat list sorted by
+    score (replies carry `parent_id`; the client renders Reddit-style
+    threads).
+  - `POST /api/comments/[id]` — new comment or reply (`parent_id` optional,
+    validated against the same post, max depth 5); honeypot spam trap;
+    stored with `approved = 0`, hidden until moderated.
+  - `POST /api/comments/[id]/vote` — upvote/downvote/toggle (`direction`
+    1/-1/0), one vote per visitor (hashed IP + user-agent) stored in
+    `comment_votes`; `upvotes`/`downvotes` recounted from it.
   - `GET /api/comments/counts?ids=a,b,c` — batch counts for card badges.
 - **Seeding**: `pipeline/seed_comments.py` writes 2–4 plausible community
-  comments per article to `pipeline/state/seed_comments.sql` (idempotent
-  via unique `seed_key`). CI runs it after every pipeline run.
+  comments per article (some with replies and baseline upvotes) to
+  `pipeline/state/seed_comments.sql` (idempotent via unique `seed_key`).
+  CI runs it after every pipeline run.
+- **UI**: `Engagement.astro` renders threads with vote arrows, scores,
+  inline reply forms (nested, depth-limited), "Reply" per comment.
 
 ### 8.2 Moderation
 New comments are invisible until approved. Approve from the repo root:
