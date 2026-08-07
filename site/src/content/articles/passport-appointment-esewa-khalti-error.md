@@ -1,6 +1,10 @@
 ---
 title: Passport Appointment Payment Error (eSewa/Khalti) — Fixes (2026)
 description: DoIA passport portal payment failing with eSewa or Khalti? Fix token expiry, card issues, browser errors, and complete your passport appointment payment.
+publishedAt: '2026-08-07T09:39:17.203Z'
+lastVerified: '2026-08-07T09:39:17.203Z'
+confidence: kb
+niche: e-gov
 keywords:
 - passport appointment payment error
 - passport esewa payment failed
@@ -14,10 +18,6 @@ tags:
 - esewa
 - khalti
 - payment
-niche: e-gov
-sources:
-- https://www.nepalpassport.gov.np
-- https://www.doia.gov.np
 summary:
 - problem: Payment page not loading after form
   cause: Browser pop-up/session issue
@@ -28,11 +28,11 @@ summary:
 - problem: Paid but no appointment shown
   cause: Callback timeout on the portal
   fix: Wait 30 minutes, refresh; keep the receipt
-publishedAt: '2026-07-26T13:54:01.000Z'
-lastVerified: '2026-08-06T13:54:01.000Z'
-confidence: kb
-related: [nagarik-app-otp-not-received, nid-card-online-application-error]
-trendingScore: 60.0
+sources:
+- https://www.nepalpassport.gov.np
+- https://www.doia.gov.np
+related: []
+trendingScore: 50.0
 ---
 
 ## Quick Answers
