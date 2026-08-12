@@ -1,6 +1,10 @@
 ---
 title: Driving License Online Application Errors — Fix Guide (2026)
 description: DoTM driving license online application failing? Fix photo errors, payment problems, duplicate applications, and verification issues on the DoTM portal.
+publishedAt: '2026-08-12T19:00:26.395Z'
+lastVerified: '2026-08-12T19:00:26.395Z'
+confidence: kb
+niche: e-gov
 keywords:
 - driving license online application nepal
 - dotm application error
@@ -13,9 +17,6 @@ tags:
 - dotm
 - e-gov
 - application
-niche: e-gov
-sources:
-- https://www.dotm.gov.np
 summary:
 - problem: Form doesn't submit
   cause: Missing field or expired session
@@ -26,11 +27,10 @@ summary:
 - problem: Application shows duplicate
   cause: A previous application exists
   fix: Check status with your application number before re-applying
-publishedAt: '2026-07-27T13:54:01.000Z'
-lastVerified: '2026-08-06T13:54:01.000Z'
-confidence: kb
-related: [nagarik-app-otp-not-received, nid-card-online-application-error]
-trendingScore: 60.0
+sources:
+- https://www.dotm.gov.np
+related: [passport-appointment-esewa-khalti-error]
+trendingScore: 50.0
 ---
 
 ## Quick Answers
