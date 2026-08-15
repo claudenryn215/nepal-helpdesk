@@ -1,6 +1,10 @@
 ---
 title: WorldLink Router No Internet Light — 7 Fixes That Work (2026)
 description: Your WorldLink router shows no internet light? Try these verified fixes — power cycle, fiber check, router login at 192.168.1.1, DNS change, and calling WorldLink support at 01-5970050.
+publishedAt: '2026-08-15T06:34:19.961Z'
+lastVerified: '2026-08-15T06:34:19.961Z'
+confidence: kb
+niche: isp
 keywords:
 - worldlink router no internet
 - worldlink no internet light
@@ -13,10 +17,6 @@ tags:
 - router
 - wifi
 - fiber
-niche: isp
-sources:
-- https://www.worldlink.com.np/support
-- https://www.worldlink.com.np/contact
 summary:
 - problem: WiFi connected but no internet
   cause: DHCP lease expired or DNS failure
@@ -27,11 +27,11 @@ summary:
 - problem: Internet light blinking fast
   cause: Line fault registered with the ISP
   fix: Wait 10 minutes, power cycle, then call 01-5970050
-publishedAt: '2026-08-02T13:54:01.000Z'
-lastVerified: '2026-08-06T13:54:01.000Z'
-confidence: kb
-related: [vianet-router-slow-wifi-fix, subisu-wifi-no-internet]
-trendingScore: 60.0
+sources:
+- https://www.worldlink.com.np/support
+- https://www.worldlink.com.np/contact
+related: []
+trendingScore: 50.0
 ---
 
 ## Quick Answers
