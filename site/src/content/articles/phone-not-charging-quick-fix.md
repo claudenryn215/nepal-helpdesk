@@ -1,6 +1,10 @@
 ---
 title: Phone Not Charging — Quick Fixes Before You Visit a Repair Shop (2026)
 description: 'Phone not charging? Try these safe fixes first: clean the port, check the cable, force restart, and test with a different charger before paying for repairs.'
+publishedAt: '2026-08-24T12:44:24.265Z'
+lastVerified: '2026-08-24T12:44:24.265Z'
+confidence: kb
+niche: general
 keywords:
 - phone not charging
 - android not charging fix
@@ -12,9 +16,6 @@ tags:
 - battery
 - charging
 - general
-niche: general
-sources:
-- https://support.google.com/pixelphone/answer/6263156
 summary:
 - problem: Phone doesn't charge at all
   cause: Dust in port, bad cable, or software freeze
@@ -25,11 +26,10 @@ summary:
 - problem: Charges only when off
   cause: Battery calibration or hardware issue
   fix: Calibrate battery; if persists, visit a service center
-publishedAt: '2026-07-23T13:54:01.000Z'
-lastVerified: '2026-08-06T13:54:01.000Z'
-confidence: kb
+sources:
+- https://support.google.com/pixelphone/answer/6263156
 related: []
-trendingScore: 60.0
+trendingScore: 50.0
 ---
 
 ## Quick Answers
