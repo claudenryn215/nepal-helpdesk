@@ -1,8 +1,8 @@
 ---
 title: WorldLink Router No Internet Light — 7 Fixes That Work (2026)
 description: Your WorldLink router shows no internet light? Try these verified fixes — power cycle, fiber check, router login at 192.168.1.1, DNS change, and calling WorldLink support at 01-5970050.
-publishedAt: '2026-08-24T12:44:24.265Z'
-lastVerified: '2026-08-24T12:44:24.265Z'
+publishedAt: '2026-08-24T18:37:37.887Z'
+lastVerified: '2026-08-24T18:37:37.887Z'
 confidence: kb
 niche: isp
 keywords:
