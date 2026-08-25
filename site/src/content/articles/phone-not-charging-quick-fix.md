@@ -1,8 +1,8 @@
 ---
 title: Phone Not Charging — Quick Fixes Before You Visit a Repair Shop (2026)
 description: 'Phone not charging? Try these safe fixes first: clean the port, check the cable, force restart, and test with a different charger before paying for repairs.'
-publishedAt: '2026-08-24T18:37:37.887Z'
-lastVerified: '2026-08-24T18:37:37.887Z'
+publishedAt: '2026-08-25T01:06:18.074Z'
+lastVerified: '2026-08-25T01:06:18.074Z'
 confidence: kb
 niche: general
 keywords:
