@@ -1,8 +1,8 @@
 ---
 title: NT Fiber (Nepal Telecom) Router Setup — Step-by-Step Guide (2026)
 description: 'Setup and fix Nepal Telecom NT Fiber: connect ONU, configure PPPoE username and password, enable WiFi, and fix IPTV not working issues.'
-publishedAt: '2026-09-03T15:46:35.125Z'
-lastVerified: '2026-09-03T15:46:35.125Z'
+publishedAt: '2026-09-04T02:48:28.512Z'
+lastVerified: '2026-09-04T02:48:28.512Z'
 confidence: kb
 niche: isp
 keywords:
