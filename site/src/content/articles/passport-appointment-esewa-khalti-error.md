@@ -1,8 +1,8 @@
 ---
 title: Passport Appointment Payment Error (eSewa/Khalti) — Fixes (2026)
 description: DoIA passport portal payment failing with eSewa or Khalti? Fix token expiry, card issues, browser errors, and complete your passport appointment payment.
-publishedAt: '2026-09-05T09:57:19.220Z'
-lastVerified: '2026-09-05T09:57:19.220Z'
+publishedAt: '2026-09-06T02:48:17.086Z'
+lastVerified: '2026-09-06T02:48:17.086Z'
 confidence: kb
 niche: e-gov
 keywords:
@@ -31,7 +31,7 @@ summary:
 sources:
 - https://www.nepalpassport.gov.np
 - https://www.doia.gov.np
-related: []
+related: [nid-card-online-application-error]
 trendingScore: 50.0
 ---
 
