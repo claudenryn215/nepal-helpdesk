@@ -1,6 +1,10 @@
 ---
 title: Nagarik App OTP Not Received — 6 Verified Fixes (2026)
 description: Nagarik App not sending OTP? Fix SIM issues, app cache, server errors, and what to do when the Nagarik App shows 'service unavailable'.
+publishedAt: '2026-09-11T20:26:31.066Z'
+lastVerified: '2026-09-11T20:26:31.066Z'
+confidence: kb
+niche: e-gov
 keywords:
 - nagarik app otp not received
 - nagarik app error
@@ -13,10 +17,6 @@ tags:
 - otp
 - verification
 - e-gov
-niche: e-gov
-sources:
-- https://nagarikapp.gov.np
-- https://www.nid.gov.np
 summary:
 - problem: OTP SMS not arriving
   cause: SIM registered under different name/number, or SMS blocked
@@ -27,11 +27,11 @@ summary:
 - problem: '''Service unavailable'' error'
   cause: Server overload (peak hours)
   fix: Retry early morning; use LTE/4G, not WiFi from abroad
-publishedAt: '2026-07-24T13:54:01.000Z'
-lastVerified: '2026-08-06T13:54:01.000Z'
-confidence: kb
-related: [nid-card-online-application-error, passport-appointment-esewa-khalti-error]
-trendingScore: 60.0
+sources:
+- https://nagarikapp.gov.np
+- https://www.nid.gov.np
+related: [nid-card-online-application-error]
+trendingScore: 50.0
 ---
 
 ## Quick Answers

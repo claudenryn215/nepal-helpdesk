@@ -1,8 +1,8 @@
 ---
 title: NID Online Application Error — How to Fix Common Failures (2026)
 description: National ID (NID) online application failing? Fix photo and signature upload errors, browser issues, payment errors and 'already registered' problems.
-publishedAt: '2026-09-08T10:34:13.914Z'
-lastVerified: '2026-09-08T10:34:13.914Z'
+publishedAt: '2026-09-11T20:26:31.066Z'
+lastVerified: '2026-09-11T20:26:31.066Z'
 confidence: kb
 niche: e-gov
 keywords:
@@ -28,7 +28,7 @@ summary:
   fix: Use Chrome on a PC with stable internet, retry off-peak
 sources:
 - https://www.nid.gov.np
-related: []
+related: [nagarik-app-otp-not-received]
 trendingScore: 50.0
 ---
 
