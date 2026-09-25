@@ -1,6 +1,10 @@
 ---
 title: Free .com.np Domain Registration — Complete Step-by-Step (2026)
 description: 'Register a free .com.np domain in Nepal: create a register.com.np account, upload citizenship, set nameservers, and avoid the top 3 rejection reasons.'
+publishedAt: '2026-09-25T03:19:44.770Z'
+lastVerified: '2026-09-25T03:19:44.770Z'
+confidence: kb
+niche: fintech
 keywords:
 - free com.np domain
 - .com.np domain registration
@@ -13,10 +17,6 @@ tags:
 - com.np
 - mercantile
 - free
-niche: fintech
-sources:
-- https://register.com.np
-- https://www.mercantile.com.np
 summary:
 - problem: Application rejected
   cause: Blurry citizenship scan or missing nameservers
@@ -27,11 +27,11 @@ summary:
 - problem: Slow approval
   cause: Manual verification by Mercantile
   fix: Expect 1–3 business days; weekends don't count
-publishedAt: '2026-07-31T13:54:01.000Z'
-lastVerified: '2026-08-06T13:54:01.000Z'
-confidence: kb
-related: [esewa-kyc-verification-error, khalti-wallet-topup-error]
-trendingScore: 60.0
+sources:
+- https://register.com.np
+- https://www.mercantile.com.np
+related: []
+trendingScore: 50.0
 ---
 
 ## Quick Answers
