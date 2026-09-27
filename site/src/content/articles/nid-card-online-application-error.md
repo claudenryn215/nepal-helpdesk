@@ -1,8 +1,8 @@
 ---
 title: NID Online Application Error — How to Fix Common Failures (2026)
 description: National ID (NID) online application failing? Fix photo and signature upload errors, browser issues, payment errors and 'already registered' problems.
-publishedAt: '2026-09-14T11:44:39.784Z'
-lastVerified: '2026-09-14T11:44:39.784Z'
+publishedAt: '2026-09-27T11:22:42.543Z'
+lastVerified: '2026-09-27T11:22:42.543Z'
 confidence: kb
 niche: e-gov
 keywords:
@@ -28,7 +28,7 @@ summary:
   fix: Use Chrome on a PC with stable internet, retry off-peak
 sources:
 - https://www.nid.gov.np
-related: [passport-appointment-esewa-khalti-error]
+related: []
 trendingScore: 50.0
 ---
 
