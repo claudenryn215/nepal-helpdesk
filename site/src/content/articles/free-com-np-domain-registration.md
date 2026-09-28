@@ -1,8 +1,8 @@
 ---
 title: Free .com.np Domain Registration — Complete Step-by-Step (2026)
 description: 'Register a free .com.np domain in Nepal: create a register.com.np account, upload citizenship, set nameservers, and avoid the top 3 rejection reasons.'
-publishedAt: '2026-09-25T03:19:44.770Z'
-lastVerified: '2026-09-25T03:19:44.770Z'
+publishedAt: '2026-09-28T22:57:16.335Z'
+lastVerified: '2026-09-28T22:57:16.335Z'
 confidence: kb
 niche: fintech
 keywords:
