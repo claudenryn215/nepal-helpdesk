@@ -1,8 +1,8 @@
 ---
 title: NID Online Application Error — How to Fix Common Failures (2026)
 description: National ID (NID) online application failing? Fix photo and signature upload errors, browser issues, payment errors and 'already registered' problems.
-publishedAt: '2026-10-02T17:26:17.297Z'
-lastVerified: '2026-10-02T17:26:17.297Z'
+publishedAt: '2026-10-02T21:49:32.030Z'
+lastVerified: '2026-10-02T21:49:32.030Z'
 confidence: kb
 niche: e-gov
 keywords:
