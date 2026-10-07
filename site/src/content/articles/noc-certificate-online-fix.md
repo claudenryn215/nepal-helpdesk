@@ -1,6 +1,10 @@
 ---
 title: NOC (No Objection Certificate) Online Application Errors — Fixes (2026)
 description: 'Fix problems applying for NOC online for education or employment: verification errors, document upload issues, payment failures, and status tracking.'
+publishedAt: '2026-10-07T12:38:14.038Z'
+lastVerified: '2026-10-07T12:38:14.038Z'
+confidence: kb
+niche: e-gov
 keywords:
 - noc application nepal
 - noc online error
@@ -12,9 +16,6 @@ tags:
 - education
 - e-gov
 - application
-niche: e-gov
-sources:
-- https://www.noc.gov.np
 summary:
 - problem: Citizenship verification fails
   cause: NID/old citizenship mismatch
@@ -25,11 +26,10 @@ summary:
 - problem: Payment not going through
   cause: Gateway timeout
   fix: Retry after 10 minutes, try another payment method
-publishedAt: '2026-07-28T13:54:01.000Z'
-lastVerified: '2026-08-06T13:54:01.000Z'
-confidence: kb
-related: [nagarik-app-otp-not-received, nid-card-online-application-error]
-trendingScore: 60.0
+sources:
+- https://www.noc.gov.np
+related: [passport-appointment-esewa-khalti-error]
+trendingScore: 50.0
 ---
 
 ## Quick Answers
