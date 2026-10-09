@@ -1,8 +1,8 @@
 ---
 title: Passport Appointment Payment Error (eSewa/Khalti) — Fixes (2026)
 description: DoIA passport portal payment failing with eSewa or Khalti? Fix token expiry, card issues, browser errors, and complete your passport appointment payment.
-publishedAt: '2026-10-09T12:34:09.265Z'
-lastVerified: '2026-10-09T12:34:09.265Z'
+publishedAt: '2026-10-09T22:14:40.114Z'
+lastVerified: '2026-10-09T22:14:40.114Z'
 confidence: kb
 niche: e-gov
 keywords:
