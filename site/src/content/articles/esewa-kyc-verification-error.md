@@ -1,6 +1,10 @@
 ---
 title: eSewa KYC Verification Not Completing — Fixes (2026)
 description: eSewa KYC stuck on 'under review' or failing? Fix document upload issues, photo selfie mismatches, and how long eSewa KYC takes to approve.
+publishedAt: '2026-10-09T04:27:58.403Z'
+lastVerified: '2026-10-09T04:27:58.403Z'
+confidence: kb
+niche: fintech
 keywords:
 - esewa kyc not working
 - esewa verification failed
@@ -13,10 +17,6 @@ tags:
 - kyc
 - wallet
 - verification
-niche: fintech
-sources:
-- https://esewa.com.np/support
-- https://esewa.com.np
 summary:
 - problem: KYC stuck on 'under review'
   cause: Document quality or backlogs
@@ -27,11 +27,11 @@ summary:
 - problem: Document rejected instantly
   cause: Blurry or expired documents
   fix: Scan properly, check document validity, re-upload
-publishedAt: '2026-07-29T13:54:01.000Z'
-lastVerified: '2026-08-06T13:54:01.000Z'
-confidence: kb
-related: [khalti-wallet-topup-error, free-com-np-domain-registration]
-trendingScore: 60.0
+sources:
+- https://esewa.com.np/support
+- https://esewa.com.np
+related: []
+trendingScore: 50.0
 ---
 
 ## Quick Answers
