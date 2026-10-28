@@ -1,8 +1,8 @@
 ---
 title: Nagarik App OTP Not Received — 6 Verified Fixes (2026)
 description: Nagarik App not sending OTP? Fix SIM issues, app cache, server errors, and what to do when the Nagarik App shows 'service unavailable'.
-publishedAt: '2026-10-27T21:49:57.840Z'
-lastVerified: '2026-10-27T21:49:57.840Z'
+publishedAt: '2026-10-28T03:53:21.834Z'
+lastVerified: '2026-10-28T03:53:21.834Z'
 confidence: kb
 niche: e-gov
 keywords:
