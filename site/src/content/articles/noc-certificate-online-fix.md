@@ -1,8 +1,8 @@
 ---
 title: NOC (No Objection Certificate) Online Application Errors — Fixes (2026)
 description: 'Fix problems applying for NOC online for education or employment: verification errors, document upload issues, payment failures, and status tracking.'
-publishedAt: '2026-10-07T12:38:14.038Z'
-lastVerified: '2026-10-07T12:38:14.038Z'
+publishedAt: '2026-10-30T12:06:52.460Z'
+lastVerified: '2026-10-30T12:06:52.460Z'
 confidence: kb
 niche: e-gov
 keywords:
@@ -28,7 +28,7 @@ summary:
   fix: Retry after 10 minutes, try another payment method
 sources:
 - https://www.noc.gov.np
-related: [passport-appointment-esewa-khalti-error]
+related: []
 trendingScore: 50.0
 ---
 
