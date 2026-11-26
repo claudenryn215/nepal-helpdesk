@@ -1,8 +1,8 @@
 ---
 title: NOC (No Objection Certificate) Online Application Errors — Fixes (2026)
 description: 'Fix problems applying for NOC online for education or employment: verification errors, document upload issues, payment failures, and status tracking.'
-publishedAt: '2026-10-30T12:06:52.460Z'
-lastVerified: '2026-10-30T12:06:52.460Z'
+publishedAt: '2026-11-26T16:22:22.455Z'
+lastVerified: '2026-11-26T16:22:22.455Z'
 confidence: kb
 niche: e-gov
 keywords:
